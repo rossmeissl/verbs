@@ -53,6 +53,9 @@ module Verbs
       tense = options[:tense]
       person = options[:person]
       plurality = options[:plurality]
+      if tense == :present and person == :first and plurality == :singular
+        verb.infinitive
+      end
     end
   end
 end
