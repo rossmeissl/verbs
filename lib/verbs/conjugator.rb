@@ -69,7 +69,11 @@ module Verbs
       when String, Symbol
         verb.to_sym
       end
-      infinitive.to_s.concat('s').to_sym
+      if infinitive.to_s.match(/#{CONSONANT_PATTERN}y$/)
+        infinitive.to_s.gsub(/y$/, 'ies').to_sym
+      else
+        infinitive.to_s.concat('s').to_sym
+      end
     end
     
   end

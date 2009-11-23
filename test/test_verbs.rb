@@ -25,4 +25,7 @@ class TestVerbs < Test::Unit::TestCase
     assert_equal :broke, Verbs::Conjugator.conjugate(:break, :tense => :past, :person => :first, :plurality => :singular) 
     assert_equal :broke, Verbs::Conjugator.conjugate(:break, :tense => :past, :person => :first, :plurality => :singular) 
   end
+  def test_irregular_conjugation_with_terminal_y
+    assert_equal :flies, Verbs::Conjugator.conjugate(:fly, :tense => :present, :person => :third, :plurality => :singular) 
+  end    
 end
