@@ -53,9 +53,24 @@ module Verbs
       tense = options[:tense]
       person = options[:person]
       plurality = options[:plurality]
-      if tense == :present and person == :first and plurality == :singular
+      if [tense, person, plurality] == [:present, :third, :singular]
+        present_third_person_singular_form_for verb
+      elsif tense == :present
         verb.infinitive
+      elsif tense == :past
+        verb.preterite
       end
     end
+    
+    def present_third_person_singular_form_for(verb)
+      infinitive = case verb
+      when Verb
+        verb.infinitive
+      when String, Symbol
+        verb.to_sym
+      end
+      infinitive.to_s.concat('s').to_sym
+    end
+    
   end
 end

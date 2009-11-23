@@ -1,6 +1,6 @@
 module Verbs
   class Verb
-    attr_reader :infinitive
+    attr_reader :infinitive, :preterite
     
     def initialize(infinitive, options = {}, &blk)
       @infinitive = infinitive

@@ -15,5 +15,14 @@ class TestVerbs < Test::Unit::TestCase
   end
   def test_irregular_conjugation 
     assert_equal :break, Verbs::Conjugator.conjugate(:break, :tense => :present, :person => :first, :plurality => :singular) 
+    assert_equal :break, Verbs::Conjugator.conjugate(:break, :tense => :present, :person => :second, :plurality => :singular) 
+    assert_equal :breaks, Verbs::Conjugator.conjugate(:break, :tense => :present, :person => :third, :plurality => :singular) 
+    assert_equal :break, Verbs::Conjugator.conjugate(:break, :tense => :present, :person => :first, :plurality => :plural) 
+    assert_equal :break, Verbs::Conjugator.conjugate(:break, :tense => :present, :person => :third, :plurality => :plural) 
+    assert_equal :broke, Verbs::Conjugator.conjugate(:break, :tense => :past, :person => :first, :plurality => :singular) 
+    assert_equal :broke, Verbs::Conjugator.conjugate(:break, :tense => :past, :person => :first, :plurality => :singular) 
+    assert_equal :broke, Verbs::Conjugator.conjugate(:break, :tense => :past, :person => :first, :plurality => :singular) 
+    assert_equal :broke, Verbs::Conjugator.conjugate(:break, :tense => :past, :person => :first, :plurality => :singular) 
+    assert_equal :broke, Verbs::Conjugator.conjugate(:break, :tense => :past, :person => :first, :plurality => :singular) 
   end
 end
