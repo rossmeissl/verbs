@@ -41,7 +41,7 @@ module Verbs
       diathesis = options[:diathesis] || :active
       mood = options[:mood] ||           :indicative
       
-      if verb = irregulars[infinitive]
+      if verb = conjugations.irregulars[infinitive]
         verb[options] || conjugate_irregular(verb, options)
       else
       end

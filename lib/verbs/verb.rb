@@ -4,6 +4,7 @@ module Verbs
     
     def initialize(infinitive, options = {}, &blk)
       @infinitive = infinitive
+      @forms = {}
       if block_given?
         yield self
       else
@@ -17,7 +18,6 @@ module Verbs
       
       tense = options[:tense]
 
-      @forms ||= {}
       @forms[:present] ||= {}
       @forms[:past] ||= {}
       if derivative = options[:derivative]
@@ -29,7 +29,6 @@ module Verbs
     end
     
     def [](options = {})
-      options.assert_valid_keys :tense, :person, :plurality, :derivative
       tense, person, plurality, derivative = options[:tense], options[:person], options[:plurality], options[:derivative]
       if tense and person and plurality
         @forms[tense].andand[person].andand[plurality]
