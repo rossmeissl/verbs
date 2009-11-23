@@ -5,7 +5,7 @@ module Verbs
     def initialize(infinitive, options = {}, &blk)
       @infinitive = infinitive
       if block_given?
-        yield self, infinitive, options
+        yield self
       else
         @preterite = options[:preterite]
         @past_participle = options[:past_participle]
@@ -13,7 +13,6 @@ module Verbs
     end
     
     def form(word, options = {})
-      options.assert_valid_keys :tense, :person, :plurality, :derivative
       raise ArgumentError, 'Irregular verb specifications must identify tense and must identify either derivative or person and plurality' unless options[:tense] and (options[:derivative] or (options[:person] and options[:plurality]))
       
       tense = options[:tense]

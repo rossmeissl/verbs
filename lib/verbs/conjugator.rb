@@ -13,16 +13,16 @@ module Verbs
   
       def irregular(infinitive, preterite = nil, past_participle = nil, &blk)
         if block_given?
-          irregular = Verb.new infinitive, &blk
+          irregular = ::Verbs::Verb.new infinitive, &blk
         else
           raise ArgumentError, "Standard irregular verbs must specify preterite and past participle forms" unless preterite and past_participle
-          irregular = Verb.new infinitive, :preterite => preterite, :past_participle => past_participle
+          irregular = ::Verbs::Verb.new infinitive, :preterite => preterite, :past_participle => past_participle
         end
-        @irregulars[infinitive.to_s.underscore.to_sym] = irregular
+        @irregulars[infinitive] = irregular
       end
   
       def single_terminal_consonant(infinitive)
-        @single_terminal_consonant << infinitive.to_s.underscore.to_sym
+        @single_terminal_consonants << infinitive
       end
     end
     
@@ -56,4 +56,3 @@ module Verbs
     end
   end
 end
-require 'conjugator/conjugations'
