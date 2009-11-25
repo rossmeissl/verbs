@@ -44,6 +44,7 @@ module Verbs
       if verb = conjugations.irregulars[infinitive]
         verb[options] || conjugate_irregular(verb, options)
       else
+        conjugate_regular(infinitive, options)
       end
     end
     
@@ -62,6 +63,19 @@ module Verbs
       end
     end
     
+    def conjugate_regular(verb, options)
+      tense = options[:tense]
+      person = options[:person]
+      plurality = options[:plurality]
+      if [tense, person, plurality] == [:present, :third, :singular]
+        present_third_person_singular_form_for verb
+      elsif tense == :present
+        verb
+      elsif tense == :past
+        regular_preterite_for verb
+      end
+    end
+    
     def present_third_person_singular_form_for(verb)
       infinitive = case verb
       when Verb
@@ -74,6 +88,24 @@ module Verbs
       else
         infinitive.to_s.concat('s').to_sym
       end
+    end
+    
+    def regular_preterite_for(verb)
+      infinitive = case verb
+      when Verb
+        verb.infinitive
+      when String, Symbol
+        verb.to_sym
+      end
+      if verb.to_s.match(/#{VOWEL_PATTERN}#{CONSONANT_PATTERN}$/) and !conjugations.single_terminal_consonants.include?(verb)
+        regular_preterite_with_doubled_terminal_consonant_for verb
+      else
+        infinitive.to_s.concat('ed').to_sym
+      end
+    end
+    
+    def regular_preterite_with_doubled_terminal_consonant_for(verb)
+      regular_preterite_for verb.to_s.concat(verb.to_s[-1,1]).to_sym
     end
     
   end
