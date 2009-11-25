@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{verbs}
-  s.version = "1.0.0"
+  s.version = "1.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Andy Rossmeissl"]
@@ -28,7 +28,8 @@ Gem::Specification.new do |s|
      "lib/verbs/conjugator.rb",
      "lib/verbs/verb.rb",
      "test/helper.rb",
-     "test/test_verbs.rb"
+     "test/test_verbs.rb",
+     "verbs.gemspec"
   ]
   s.homepage = %q{http://github.com/rossmeissl/verbs}
   s.rdoc_options = ["--charset=UTF-8"]
