@@ -20,6 +20,11 @@ Conjugates most common english verbs for all persons in present and past tense (
 The gem is hosted at http://gemcutter.org/gems/verbs
 
   gem install verbs
+  
+== Acknowledgements
+
+* [Lingua::Conjugate]http://cpansearch.perl.org/src/RWG/Lingua-EN-Conjugate-0.308/lib/Lingua/EN/Conjugate.pm
+* [Pat Byrd and Tom McKlin]http://www2.gsu.edu/~wwwesl/egw/pluralsv.htm
 
 == Copyright
 
