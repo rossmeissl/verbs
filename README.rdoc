@@ -1,16 +1,25 @@
 = verbs
 
-Description goes here.
+Conjugates most common english verbs for all persons in present and past tense (active diathesis, indicative mood). Standard and exceptional spelling rules are obeyed.
 
-== Note on Patches/Pull Requests
- 
-* Fork the project.
-* Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
-  future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
-* Send me a pull request. Bonus points for topic branches.
+  >> Verbs::Conjugator.conjugate :be, :tense => :past, :person => :second, :plurality => :singular
+  => :were
+  >> Verbs::Conjugator.conjugate :break, :tense => :past, :person => :second, :plurality => :singular
+  => :broke
+  >> Verbs::Conjugator.conjugate :fly, :tense => :present, :person => :third, :plurality => :singular
+  => :flies
+  >> Verbs::Conjugator.conjugate :ship, :tense => :past, :person => :second, :plurality => :singular
+  => :shipped
+  >> Verbs::Conjugator.conjugate :hoe, :tense => :past, :person => :second, :plurality => :singular
+  => :hoed
+  >> Verbs::Conjugator.conjugate :coax, :tense => :present, :person => :second, :plurality => :singular
+  => :coax
+  
+== Installation
+
+The gem is hosted at http://gemcutter.org/gems/verbs
+
+  gem install verbs
 
 == Copyright
 
