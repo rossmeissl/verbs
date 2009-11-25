@@ -23,8 +23,8 @@ The gem is hosted at http://gemcutter.org/gems/verbs
   
 == Acknowledgements
 
-* [Lingua::Conjugate]http://cpansearch.perl.org/src/RWG/Lingua-EN-Conjugate-0.308/lib/Lingua/EN/Conjugate.pm
-* [Pat Byrd and Tom McKlin]http://www2.gsu.edu/~wwwesl/egw/pluralsv.htm
+* {Lingua::Conjugate}[http://cpansearch.perl.org/src/RWG/Lingua-EN-Conjugate-0.308/lib/Lingua/EN/Conjugate.pm]
+* {Pat Byrd and Tom McKlin}[http://www2.gsu.edu/~wwwesl/egw/pluralsv.htm]
 
 == Copyright
 
