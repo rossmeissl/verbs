@@ -85,6 +85,8 @@ module Verbs
       end
       if infinitive.to_s.match(/#{CONSONANT_PATTERN}y$/)
         infinitive.to_s.gsub(/y$/, 'ies').to_sym
+      elsif infinitive.to_s.match(/[szx]$/) or infinitive.to_s.match(/[sc]h$/)
+        infinitive.to_s.concat('es').to_sym
       else
         infinitive.to_s.concat('s').to_sym
       end
@@ -99,6 +101,10 @@ module Verbs
       end
       if verb.to_s.match(/#{VOWEL_PATTERN}#{CONSONANT_PATTERN}$/) and !conjugations.single_terminal_consonants.include?(verb)
         regular_preterite_with_doubled_terminal_consonant_for verb
+      elsif verb.to_s.match(/#{CONSONANT_PATTERN}e$/) or verb.to_s.match(/ye$/) or verb.to_s.match(/oe$/) or verb.to_s.match(/nge$/) or verb.to_s.match(/ie$/) or verb.to_s.match(/ee$/)
+        infinitive.to_s.concat('d').to_sym
+      elsif verb.to_s.match(/#{CONSONANT_PATTERN}y$/)
+        infinitive.to_s.chomp('y').concat('ied').to_sym
       else
         infinitive.to_s.concat('ed').to_sym
       end
