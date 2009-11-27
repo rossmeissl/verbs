@@ -35,11 +35,12 @@ module Verbs
     end
     
     def conjugate(infinitive, options = {})
-      tense = options[:tense] ||         :present
-      person = options[:person] ||       :third
-      plurality = options[:plurality] || :singular
-      diathesis = options[:diathesis] || :active
-      mood = options[:mood] ||           :indicative
+      tense = options[:tense] ||         :present    # present, past, future
+      person = options[:person] ||       :third      # first, second, third
+      plurality = options[:plurality] || :singular   # singular, plural
+      diathesis = options[:diathesis] || :active     # active, passive
+      mood = options[:mood] ||           :indicative # conditional, imperative, indicative, injunctive, optative, potential, subjunctive
+      aspect = options[:aspect] ||       :habitual   # perfective, habitual, progressive, perfect, prospective 
       
       if verb = conjugations.irregulars[infinitive]
         verb[options] || conjugate_irregular(verb, options)
