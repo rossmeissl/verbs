@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{verbs}
-  s.version = "1.0.5"
+  s.version = "1.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Andy Rossmeissl"]
@@ -27,6 +27,7 @@ Gem::Specification.new do |s|
      "lib/verbs/conjugations.rb",
      "lib/verbs/conjugator.rb",
      "lib/verbs/verb.rb",
+     "lib/verbs/verblike.rb",
      "test/helper.rb",
      "test/test_verbs.rb",
      "verbs.gemspec"
