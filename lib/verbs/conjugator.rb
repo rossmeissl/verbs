@@ -35,17 +35,42 @@ module Verbs
     end
     
     def conjugate(infinitive, options = {})
-      tense = options[:tense] ||         :present    # present, past, future
-      person = options[:person] ||       :third      # first, second, third
-      plurality = options[:plurality] || :singular   # singular, plural
-      diathesis = options[:diathesis] || :active     # active, passive
-      mood = options[:mood] ||           :indicative # conditional, imperative, indicative, injunctive, optative, potential, subjunctive
-      aspect = options[:aspect] ||       :habitual   # perfective, habitual, progressive, perfect, prospective 
+      # tense = options[:tense] ||         :present    # present, past, future
+      # person = options[:person] ||       :third      # first, second, third
+      # plurality = options[:plurality] || :singular   # singular, plural
+      # diathesis = options[:diathesis] || :active     # active, passive
+      # mood = options[:mood] ||           :indicative # conditional, imperative, indicative, injunctive, optative, potential, subjunctive
+      # aspect = options[:aspect] ||       :habitual   # perfective, habitual, progressive, perfect, prospective
+      
+      if actor = options.delete(:subject)
+        actor = subject(options).humanize if actor.is_a?(TrueClass)
+      end
       
       if verb = conjugations.irregulars[infinitive]
-        verb[options] || conjugate_irregular(verb, options)
+        conjugation = verb[options] || conjugate_irregular(verb, options)
       else
-        conjugate_regular(infinitive, options)
+        conjugation = conjugate_regular(infinitive, options)
+      end
+      
+      if actor
+        "#{actor} #{conjugation}"
+      else
+        conjugation
+      end
+    end
+    
+    def subject(options)
+      case [options[:person], options[:plurality]]
+      when [:first, :singular]
+        'I'
+      when [:first, :plural]
+        'we'
+      when [:second, :singular], [:second, :plural]
+        'you'
+      when [:third, :singular]
+        'he'
+      when [:third, :plural]
+        'they'
       end
     end
     

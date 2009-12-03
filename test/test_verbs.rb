@@ -78,4 +78,8 @@ class TestVerbs < Test::Unit::TestCase
     assert_equal :washes, Verbs::Conjugator.conjugate(:wash, :tense => :present, :person => :third, :plurality => :singular)
     assert_equal :watches, Verbs::Conjugator.conjugate(:watch, :tense => :present, :person => :third, :plurality => :singular)
   end
+  def test_conjugation_with_subject
+    assert_equal 'Matz is', Verbs::Conjugator.conjugate(:be, :tense => :present, :person => :third, :plurality => :singular, :subject => 'Matz')
+    assert_equal 'We are', Verbs::Conjugator.conjugate(:be, :tense => :present, :person => :first, :plurality => :plural, :subject => true)
+  end
 end
