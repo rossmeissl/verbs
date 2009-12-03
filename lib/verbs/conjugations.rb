@@ -15,6 +15,21 @@ Verbs::Conjugator.conjugations do |conjugate|
     verb.form :been,  :tense => :past,    :derivative => :participle
   end
 
+  conjugate.irregular :have do |verb| 
+    verb.form :have,   :tense => :present, :person => :first,  :plurality => :singular
+    verb.form :has,    :tense => :present, :person => :third,  :plurality => :singular
+    verb.form :have,   :tense => :present, :person => :second, :plurality => :singular
+    verb.form :have,   :tense => :present, :person => :first,  :plurality => :plural
+    verb.form :have,   :tense => :present, :person => :third,  :plurality => :plural
+    verb.form :had,    :tense => :past,    :person => :first,  :plurality => :singular
+    verb.form :had,    :tense => :past,    :person => :third,  :plurality => :singular
+    verb.form :had,    :tense => :past,    :person => :second, :plurality => :singular
+    verb.form :had,    :tense => :past,    :person => :first,  :plurality => :plural
+    verb.form :had,    :tense => :past,    :person => :third,  :plurality => :plural
+    verb.form :having, :tense => :present, :derivative => :participle
+    verb.form :had,    :tense => :past,    :derivative => :participle
+  end
+
   # http://cpansearch.perl.org/src/RWG/Lingua-EN-Conjugate-0.308/lib/Lingua/EN/Conjugate.pm
   conjugate.irregular :awake, :awoke, :awoken
   conjugate.irregular :bear, :bore, :born
@@ -76,7 +91,6 @@ Verbs::Conjugator.conjugations do |conjugate|
   conjugate.irregular :grind, :ground, :ground
   conjugate.irregular :grow, :grew, :grown
   conjugate.irregular :hang, :hung, :hung
-  conjugate.irregular :have, :had, :had
   conjugate.irregular :hear, :heard, :heard
   conjugate.irregular :hide, :hid, :hidden
   conjugate.irregular :hit, :hit, :hit
