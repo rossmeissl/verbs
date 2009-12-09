@@ -106,8 +106,8 @@ module Verbs
     end
     
     def present_participle(infinitive)
-      if infinitive.to_s.match(/#{VOWEL_PATTERN}#{CONSONANT_PATTERN}$/) and !conjugations.single_terminal_consonants.include?(infinitive)
-        present_participle_with_doubled_terminal_consonant_for verb
+      if infinitive.to_s.match(/#{CONSONANT_PATTERN}#{VOWEL_PATTERN}#{CONSONANT_PATTERN}$/) and !conjugations.single_terminal_consonants.include?(infinitive)
+        present_participle_with_doubled_terminal_consonant_for infinitive
       elsif infinitive.to_s.match(/c$/)
         infinitive.to_s.concat('king').to_sym
       elsif infinitive.to_s.match(/ye$/) or infinitive.to_s.match(/oe$/) or infinitive.to_s.match(/nge$/) or infinitive.to_s.match(/ee$/)

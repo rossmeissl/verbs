@@ -2,18 +2,13 @@
 
 Conjugates most common english verbs for all persons in present and past tense (active diathesis, indicative mood). Standard and exceptional spelling rules are obeyed.
 
-  >> Verbs::Conjugator.conjugate :be, :tense => :past, :person => :second, :plurality => :singular
+  >> Verbs::Conjugator.conjugate :be, :tense => :past, :person => :second, :plurality => :singular, :aspect => :perfective
   => :were
-  >> Verbs::Conjugator.conjugate :break, :tense => :past, :person => :second, :plurality => :singular
-  => :broke
-  >> Verbs::Conjugator.conjugate :fly, :tense => :present, :person => :third, :plurality => :singular
-  => :flies
-  >> Verbs::Conjugator.conjugate :ship, :tense => :past, :person => :second, :plurality => :singular
-  => :shipped
-  >> Verbs::Conjugator.conjugate :hoe, :tense => :past, :person => :second, :plurality => :singular
-  => :hoed
-  >> Verbs::Conjugator.conjugate :coax, :tense => :present, :person => :second, :plurality => :singular
-  => :coax
+  >> 'be nice'.verb.conjugate :subject => 'Matz'
+  => "Matz is nice"
+  >> :sleep.verb.conjugate :tense => :future, :person => :first, :plurality => :singular, :aspect => :progressive, :subject => true
+  => :"I will be sleeping"
+
   
 == Installation
 
@@ -21,6 +16,32 @@ The gem is hosted at http://gemcutter.org/gems/verbs
 
   gem install verbs
   
+== Options
+
+This library takes a rather strict view of English verb conjugation.
+
+=== <tt>:tense</tt>
+
+One of <tt>:past</tt>, <tt>:present</tt>, or <tt>:future</tt>. Defaults to <tt>:present</tt>.
+
+=== <tt>:person</tt>
+
+One of <tt>:first</tt>, <tt>:second</tt>, or <tt>:third</tt>. Defaults to <tt>:third</tt>.
+
+=== <tt>:plurality</tt>
+
+Either <tt>:singular</tt> or <tt>:plural</tt>. Defaults to <tt>:singular</tt>.
+
+=== <tt>:aspect</tt>
+
+One of <tt>:habitual</tt>, <tt>:perfect</tt>, <tt>:perfective</tt>, <tt>:progressive</tt>, or <tt>:prospective</tt>. Defaults to <tt>:habitual</tt>.
+
+See below for a guide to verb aspect.
+
+=== <tt>:subject</tt>
+
+Set this to a string to prepend the conjugated verb with it. When set to <tt>true</tt>, a standard personal pronoun will be used.
+
 == Tense/aspect quick reference
 
   EXAMPLE                   TENSE    ASPECT
