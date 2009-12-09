@@ -21,10 +21,38 @@ The gem is hosted at http://gemcutter.org/gems/verbs
 
   gem install verbs
   
+== Tense/aspect quick reference
+
+<table>
+  <tr>
+    <th>Example</th>
+    <th>Tense</th>
+    <th>Aspect</th>
+  </tr>
+
+  <tr><td>I usually accepted</td><td>past</td><td>habitual</td></tr>
+  <tr><td>I had accepted</td><td>past</td><td>perfect</td></tr>
+  <tr><td>I accepted</td><td>past</td><td>perfective</td></tr>
+  <tr><td>I was accepting</td><td>past</td><td>progressive</td></tr>
+  <tr><td>I was about to accept</td><td>past</td><td>prospective</td></tr>
+  <tr><td>I accept</td><td>present</td><td>habitual</td></tr>
+  <tr><td>I have accepted</td><td>present</td><td>perfect</td></tr>
+  <tr><td>I am having accepted</td><td>present</td><td>perfective</td></tr>
+  <tr><td>I am accepting</td><td>present</td><td>progressive</td></tr>
+  <tr><td>I am about to accept</td><td>present</td><td>prospective</td></tr>
+  <tr><td>I will accept</td><td>future</td><td>habitual</td></tr>
+  <tr><td>I will have accepted</td><td>future</td><td>perfect</td></tr>
+  <tr><td>I will be having accepted future</td><td>perfective</td></tr>
+  <tr><td>I will be accepting</td><td>future</td><td>progressive</td></tr>
+  <tr><td>I will be about to accept future</td><td>prospective</td></tr>
+
+</table>
+  
 == Acknowledgements
 
 * {Lingua::Conjugate}[http://cpansearch.perl.org/src/RWG/Lingua-EN-Conjugate-0.308/lib/Lingua/EN/Conjugate.pm]
 * {Pat Byrd and Tom McKlin}[http://www2.gsu.edu/~wwwesl/egw/pluralsv.htm]
+* {Rick Harrison}[http://www.rickharrison.com/language/aspect.html]
 
 == Copyright
 
