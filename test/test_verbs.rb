@@ -70,6 +70,9 @@ class TestVerbs < Test::Unit::TestCase
     assert_equal 'Matz is', Verbs::Conjugator.conjugate(:be, :tense => :present, :person => :third, :plurality => :singular, :subject => 'Matz', :aspect => :habitual)
     assert_equal 'We are', Verbs::Conjugator.conjugate(:be, :tense => :present, :person => :first, :plurality => :plural, :subject => true, :aspect => :habitual)
   end
+  def test_conjugation_with_false_subject
+    assert_equal 'accepts', Verbs::Conjugator.conjugate(:accept, :subject => false)
+  end
   def test_core_access
     assert_equal :accepts, :accept.verb.conjugate(:tense => :present, :person => :third, :plurality => :singular, :aspect => :habitual)
     assert_equal 'accepts', 'accept'.verb.conjugate(:tense => :present, :person => :third, :plurality => :singular, :aspect => :habitual)

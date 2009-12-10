@@ -46,7 +46,8 @@ module Verbs
       
       conjugation = form.map { |e| resolve e, infinitive, tense, person, plurality }.join(' ').strip
       
-      if actor = options.delete(:subject)
+      if options[:subject]
+        actor = options.delete(:subject)
         actor = subject(options).humanize if actor.is_a?(TrueClass)
       end
       
