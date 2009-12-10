@@ -10,8 +10,8 @@ begin
     gem.email = "andy@rossmeissl.net"
     gem.homepage = "http://github.com/rossmeissl/verbs"
     gem.authors = ["Andy Rossmeissl"]
-    gem.add_dependency 'andand', '>= 1.3.1'
-    gem.add_dependency 'activesupport', '>= 2.3.5'
+    gem.add_dependency 'andand'
+    gem.add_dependency 'activesupport'
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
