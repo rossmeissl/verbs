@@ -170,7 +170,7 @@ module Verbs
       when String, Symbol
         verb.to_sym
       end
-      if verb.to_s.match(/#{VOWEL_PATTERN}#{CONSONANT_PATTERN}$/) and !conjugations.single_terminal_consonants.include?(verb) and !infinitive.to_s.match(/ean$/)
+      if verb.to_s.match(/#{CONSONANT_PATTERN}#{VOWEL_PATTERN}#{DOUBLED_CONSONANT_PATTERN}$/) and !conjugations.single_terminal_consonants.include?(verb)
         regular_preterite_with_doubled_terminal_consonant_for verb
       elsif verb.to_s.match(/#{CONSONANT_PATTERN}e$/) or verb.to_s.match(/ye$/) or verb.to_s.match(/oe$/) or verb.to_s.match(/nge$/) or verb.to_s.match(/ie$/) or verb.to_s.match(/ee$/)
         infinitive.to_s.concat('d').to_sym

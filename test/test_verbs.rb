@@ -53,6 +53,11 @@ class TestVerbs < Test::Unit::TestCase
     assert_equal 'cleaned',  Verbs::Conjugator.conjugate(:clean, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective)
     assert_equal 'am cleaning', Verbs::Conjugator.conjugate(:clean, :tense => :present, :person => :first, :plurality => :singular, :aspect => :progressive)
   end
+  def test_regular_non_doubled_ending_consonant
+    assert_equal 'fixes', Verbs::Conjugator.conjugate(:fix, :tense => :present, :person => :third, :plurality => :singular, :aspect => :habitual)
+    assert_equal 'fixed',  Verbs::Conjugator.conjugate(:fix, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective)
+    assert_equal 'faxed',  Verbs::Conjugator.conjugate(:fix, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective)
+  end
   def test_regular_conjugation_with_terminal_e
     assert_equal 'created', Verbs::Conjugator.conjugate(:create, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective)
   end
