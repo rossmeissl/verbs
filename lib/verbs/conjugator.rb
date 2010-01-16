@@ -1,16 +1,16 @@
 module Verbs
   module Conjugator
     extend self
-  
+
     class Conjugations
       include Singleton
-  
+
       attr_reader :irregulars, :single_terminal_consonants, :copulars
-  
+
       def initialize
         @irregulars, @single_terminal_consonants, @copulars = {}, [], {}
       end
-  
+
       def irregular(infinitive, preterite = nil, past_participle = nil, &blk)
         if block_given?
           irregular = ::Verbs::Verb.new infinitive, &blk
@@ -20,12 +20,12 @@ module Verbs
         end
         @irregulars[infinitive] = irregular
       end
-  
+
       def single_terminal_consonant(infinitive)
         @single_terminal_consonants << infinitive
       end
     end
-    
+
     def conjugations
       if block_given?
         yield Conjugations.instance
@@ -33,7 +33,7 @@ module Verbs
         Conjugations.instance
       end
     end
-    
+
     def conjugate(infinitive, options = {})
       tense = options[:tense] ||         :present    # present, past, future
       person = options[:person] ||       :third      # first, second, third
@@ -41,19 +41,19 @@ module Verbs
       diathesis = options[:diathesis] || :active     # active, passive
       mood = options[:mood] ||           :indicative # conditional, imperative, indicative, injunctive, optative, potential, subjunctive
       aspect = options[:aspect] ||       :habitual   # perfective, habitual, progressive, perfect, prospective
-      
+
       form = form_for(tense, aspect)
-      
+
       conjugation = form.map { |e| resolve e, infinitive, tense, person, plurality }.join(' ').strip
-      
+
       if options[:subject]
         actor = options.delete(:subject)
         actor = subject(options).humanize if actor.is_a?(TrueClass)
       end
-      
+
       "#{actor} #{conjugation}".strip
     end
-    
+
     def subject(options)
       case [options[:person], options[:plurality]]
       when [:first, :singular]
@@ -68,9 +68,9 @@ module Verbs
         'they'
       end
     end
-    
+
     private
-    
+
     def resolve(element, infinitive, tense, person, plurality)
       case element
       when String
@@ -83,11 +83,11 @@ module Verbs
         inflect element, tense, person, plurality
       end
     end
-    
+
     def inflect(infinitive, inflection, person, plurality)
       send(*([inflection, infinitive, person, plurality][0, method(inflection).arity + 1]))
     end
-    
+
     def present(infinitive, person, plurality)
       if verb = conjugations.irregulars[infinitive]
         conjugate_irregular(verb, :tense => :present, :person => person, :plurality => plurality)
@@ -97,7 +97,7 @@ module Verbs
         infinitive
       end
     end
-    
+
     def past(infinitive, person, plurality)
       if verb = conjugations.irregulars[infinitive]
         conjugate_irregular(verb, :tense => :past, :person => person, :plurality => plurality)
@@ -105,7 +105,7 @@ module Verbs
         regular_preterite_for infinitive
       end
     end
-    
+
     def present_participle(infinitive)
       if infinitive.to_s.match(/#{CONSONANT_PATTERN}#{VOWEL_PATTERN}#{CONSONANT_PATTERN}$/) and !conjugations.single_terminal_consonants.include?(infinitive)
         present_participle_with_doubled_terminal_consonant_for infinitive
@@ -119,7 +119,7 @@ module Verbs
         infinitive.to_s[0..-1].concat('ing').to_sym
       end
     end
-    
+
     def past_participle(infinitive)
       if verb = conjugations.irregulars[infinitive]
         conjugate_irregular(verb, :tense => :past, :derivative => :participle)
@@ -127,10 +127,10 @@ module Verbs
         regular_preterite_for infinitive
       end
     end
-    
+
     def conjugate_irregular(verb, options)
       return verb[options] if verb[options]
-      
+
       tense = options[:tense]
       person = options[:person]
       plurality = options[:plurality]
@@ -146,7 +146,7 @@ module Verbs
         verb.preterite
       end
     end
-    
+
     def present_third_person_singular_form_for(verb)
       infinitive = case verb
       when Verb
@@ -162,7 +162,7 @@ module Verbs
         infinitive.to_s.concat('s').to_sym
       end
     end
-    
+
     def regular_preterite_for(verb)
       infinitive = case verb
       when Verb
@@ -170,7 +170,7 @@ module Verbs
       when String, Symbol
         verb.to_sym
       end
-      if verb.to_s.match(/#{VOWEL_PATTERN}#{CONSONANT_PATTERN}$/) and !conjugations.single_terminal_consonants.include?(verb)
+      if verb.to_s.match(/#{VOWEL_PATTERN}#{CONSONANT_PATTERN}$/) and !conjugations.single_terminal_consonants.include?(verb) and !infinitive.to_s.match(/ean$/)
         regular_preterite_with_doubled_terminal_consonant_for verb
       elsif verb.to_s.match(/#{CONSONANT_PATTERN}e$/) or verb.to_s.match(/ye$/) or verb.to_s.match(/oe$/) or verb.to_s.match(/nge$/) or verb.to_s.match(/ie$/) or verb.to_s.match(/ee$/)
         infinitive.to_s.concat('d').to_sym
@@ -180,15 +180,15 @@ module Verbs
         infinitive.to_s.concat('ed').to_sym
       end
     end
-    
+
     def regular_preterite_with_doubled_terminal_consonant_for(verb)
       regular_preterite_for verb.to_s.concat(verb.to_s[-1,1]).to_sym
     end
-    
+
     def present_participle_with_doubled_terminal_consonant_for(verb)
       present_participle verb.to_s.concat(verb.to_s[-1,1]).to_sym
     end
-    
+
     def form_for(tense, aspect)
       form = []
       if tense == :future

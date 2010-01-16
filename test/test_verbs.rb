@@ -13,44 +13,48 @@ class TestVerbs < Test::Unit::TestCase
     assert_equal 'were', Verbs::Conjugator.conjugate(:be, :tense => :past, :person => :first, :plurality => :plural, :aspect => :perfective)
     assert_equal 'were', Verbs::Conjugator.conjugate(:be, :tense => :past, :person => :third, :plurality => :plural, :aspect => :perfective)
   end
-  def test_irregular_conjugation 
-    assert_equal 'break', Verbs::Conjugator.conjugate(:break, :tense => :present, :person => :first, :plurality => :singular, :aspect => :habitual) 
-    assert_equal 'break', Verbs::Conjugator.conjugate(:break, :tense => :present, :person => :second, :plurality => :singular, :aspect => :habitual) 
-    assert_equal 'breaks', Verbs::Conjugator.conjugate(:break, :tense => :present, :person => :third, :plurality => :singular, :aspect => :habitual) 
-    assert_equal 'break', Verbs::Conjugator.conjugate(:break, :tense => :present, :person => :first, :plurality => :plural, :aspect => :habitual) 
-    assert_equal 'break', Verbs::Conjugator.conjugate(:break, :tense => :present, :person => :third, :plurality => :plural, :aspect => :habitual) 
-    assert_equal 'broke', Verbs::Conjugator.conjugate(:break, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective) 
-    assert_equal 'broke', Verbs::Conjugator.conjugate(:break, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective) 
-    assert_equal 'broke', Verbs::Conjugator.conjugate(:break, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective) 
-    assert_equal 'broke', Verbs::Conjugator.conjugate(:break, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective) 
-    assert_equal 'broke', Verbs::Conjugator.conjugate(:break, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective) 
-    assert_equal 'has', Verbs::Conjugator.conjugate(:have, :tense => :present, :person => :third, :plurality => :singular, :aspect => :habitual) 
+  def test_irregular_conjugation
+    assert_equal 'break', Verbs::Conjugator.conjugate(:break, :tense => :present, :person => :first, :plurality => :singular, :aspect => :habitual)
+    assert_equal 'break', Verbs::Conjugator.conjugate(:break, :tense => :present, :person => :second, :plurality => :singular, :aspect => :habitual)
+    assert_equal 'breaks', Verbs::Conjugator.conjugate(:break, :tense => :present, :person => :third, :plurality => :singular, :aspect => :habitual)
+    assert_equal 'break', Verbs::Conjugator.conjugate(:break, :tense => :present, :person => :first, :plurality => :plural, :aspect => :habitual)
+    assert_equal 'break', Verbs::Conjugator.conjugate(:break, :tense => :present, :person => :third, :plurality => :plural, :aspect => :habitual)
+    assert_equal 'broke', Verbs::Conjugator.conjugate(:break, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective)
+    assert_equal 'broke', Verbs::Conjugator.conjugate(:break, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective)
+    assert_equal 'broke', Verbs::Conjugator.conjugate(:break, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective)
+    assert_equal 'broke', Verbs::Conjugator.conjugate(:break, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective)
+    assert_equal 'broke', Verbs::Conjugator.conjugate(:break, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective)
+    assert_equal 'has', Verbs::Conjugator.conjugate(:have, :tense => :present, :person => :third, :plurality => :singular, :aspect => :habitual)
   end
   def test_irregular_conjugation_with_terminal_y
-    assert_equal 'flies', Verbs::Conjugator.conjugate(:fly, :tense => :present, :person => :third, :plurality => :singular, :aspect => :habitual) 
-    assert_equal 'carried', Verbs::Conjugator.conjugate(:carry, :tense => :past, :person => :third, :plurality => :singular, :aspect => :perfective) 
-    assert_equal 'stayed', Verbs::Conjugator.conjugate(:stay, :tense => :past, :person => :third, :plurality => :singular, :aspect => :perfective) 
+    assert_equal 'flies', Verbs::Conjugator.conjugate(:fly, :tense => :present, :person => :third, :plurality => :singular, :aspect => :habitual)
+    assert_equal 'carried', Verbs::Conjugator.conjugate(:carry, :tense => :past, :person => :third, :plurality => :singular, :aspect => :perfective)
+    assert_equal 'stayed', Verbs::Conjugator.conjugate(:stay, :tense => :past, :person => :third, :plurality => :singular, :aspect => :perfective)
   end
   def test_regular_conjugation
-    assert_equal 'accept', Verbs::Conjugator.conjugate(:accept, :tense => :present, :person => :first, :plurality => :singular, :aspect => :habitual) 
-    assert_equal 'accept', Verbs::Conjugator.conjugate(:accept, :tense => :present, :person => :second, :plurality => :singular, :aspect => :habitual) 
-    assert_equal 'accepts', Verbs::Conjugator.conjugate(:accept, :tense => :present, :person => :third, :plurality => :singular, :aspect => :habitual) 
-    assert_equal 'accept', Verbs::Conjugator.conjugate(:accept, :tense => :present, :person => :first, :plurality => :plural, :aspect => :habitual) 
-    assert_equal 'accept', Verbs::Conjugator.conjugate(:accept, :tense => :present, :person => :third, :plurality => :plural, :aspect => :habitual) 
-    assert_equal 'accepted', Verbs::Conjugator.conjugate(:accept, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective) 
-    assert_equal 'accepted', Verbs::Conjugator.conjugate(:accept, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective) 
-    assert_equal 'accepted', Verbs::Conjugator.conjugate(:accept, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective) 
-    assert_equal 'accepted', Verbs::Conjugator.conjugate(:accept, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective) 
-    assert_equal 'accepted', Verbs::Conjugator.conjugate(:accept, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective) 
+    assert_equal 'accept', Verbs::Conjugator.conjugate(:accept, :tense => :present, :person => :first, :plurality => :singular, :aspect => :habitual)
+    assert_equal 'accept', Verbs::Conjugator.conjugate(:accept, :tense => :present, :person => :second, :plurality => :singular, :aspect => :habitual)
+    assert_equal 'accepts', Verbs::Conjugator.conjugate(:accept, :tense => :present, :person => :third, :plurality => :singular, :aspect => :habitual)
+    assert_equal 'accept', Verbs::Conjugator.conjugate(:accept, :tense => :present, :person => :first, :plurality => :plural, :aspect => :habitual)
+    assert_equal 'accept', Verbs::Conjugator.conjugate(:accept, :tense => :present, :person => :third, :plurality => :plural, :aspect => :habitual)
+    assert_equal 'accepted', Verbs::Conjugator.conjugate(:accept, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective)
+    assert_equal 'accepted', Verbs::Conjugator.conjugate(:accept, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective)
+    assert_equal 'accepted', Verbs::Conjugator.conjugate(:accept, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective)
+    assert_equal 'accepted', Verbs::Conjugator.conjugate(:accept, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective)
+    assert_equal 'accepted', Verbs::Conjugator.conjugate(:accept, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective)
   end
   def test_regular_conjugation_with_terminal_single_consonant
-    assert_equal 'shipped', Verbs::Conjugator.conjugate(:ship, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective) 
+    assert_equal 'shipped', Verbs::Conjugator.conjugate(:ship, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective)
   end
   def test_regular_conjugation_with_irregular_terminal_consonant
-    assert_equal 'abandoned', Verbs::Conjugator.conjugate(:abandon, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective) 
+    assert_equal 'abandoned', Verbs::Conjugator.conjugate(:abandon, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective)
+  end
+  def test_regular_conjugation_with_ean_suffix
+    assert_equal 'cleaned',  Verbs::Conjugator.conjugate(:clean, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective)
+    assert_equal 'am cleaning', Verbs::Conjugator.conjugate(:clean, :tense => :present, :person => :first, :plurality => :singular, :aspect => :progressive)
   end
   def test_regular_conjugation_with_terminal_e
-    assert_equal 'created', Verbs::Conjugator.conjugate(:create, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective) 
+    assert_equal 'created', Verbs::Conjugator.conjugate(:create, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective)
   end
   def test_regular_conjugation_with_unusual_terminal_e
     assert_equal 'dyed', Verbs::Conjugator.conjugate(:dye, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective)
