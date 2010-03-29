@@ -5,12 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{verbs}
-  s.version = "2.0.7"
+  s.version = "2.0.8"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Andy Rossmeissl"]
-  s.date = %q{2010-03-30}
-  s.description = %q{Conjugates most common english verbs for all persons in present and past tense (active diathesis, indicative mood). Standard and exceptional spelling rules are obeyed.}
+  s.date = %q{2010-03-29}
+  s.description = %q{Conjugates most common english verbs for all persons in all tenses and all standard aspects (with active diathesis and indicative mood). Standard and exceptional spelling rules are obeyed.}
   s.email = %q{andy@rossmeissl.net}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -35,7 +35,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/rossmeissl/verbs}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.6}
+  s.rubygems_version = %q{1.3.5}
   s.summary = %q{English verb conjugation in Ruby}
   s.test_files = [
     "test/helper.rb",
