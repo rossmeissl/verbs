@@ -1,6 +1,6 @@
 = verbs
 
-Conjugates most common english verbs for all persons in present and past tense (active diathesis, indicative mood). Standard and exceptional spelling rules are obeyed.
+Conjugates most common english verbs for all persons in all tenses and all standard aspects (with active diathesis and indicative mood). Standard and exceptional spelling rules are obeyed.
 
   >> Verbs::Conjugator.conjugate :be, :tense => :past, :person => :second, :plurality => :singular, :aspect => :perfective
   => :were

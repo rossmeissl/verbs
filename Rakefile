@@ -6,7 +6,7 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "verbs"
     gem.summary = %Q{English verb conjugation in Ruby}
-    gem.description = %Q{Conjugates most common english verbs for all persons in present and past tense (active diathesis, indicative mood). Standard and exceptional spelling rules are obeyed.}
+    gem.description = %Q{Conjugates most common english verbs for all persons in all tenses and all standard aspects (with active diathesis and indicative mood). Standard and exceptional spelling rules are obeyed.}
     gem.email = "andy@rossmeissl.net"
     gem.homepage = "http://github.com/rossmeissl/verbs"
     gem.authors = ["Andy Rossmeissl"]
