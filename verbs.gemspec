@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{verbs}
-  s.version = "2.0.5"
+  s.version = "2.0.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Andy Rossmeissl"]
-  s.date = %q{2009-12-10}
+  s.date = %q{2010-03-30}
   s.description = %q{Conjugates most common english verbs for all persons in present and past tense (active diathesis, indicative mood). Standard and exceptional spelling rules are obeyed.}
   s.email = %q{andy@rossmeissl.net}
   s.extra_rdoc_files = [
@@ -35,7 +35,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/rossmeissl/verbs}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.6}
   s.summary = %q{English verb conjugation in Ruby}
   s.test_files = [
     "test/helper.rb",
@@ -47,15 +47,15 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<andand>, [">= 0"])
-      s.add_runtime_dependency(%q<activesupport>, [">= 0"])
+      s.add_runtime_dependency(%q<andand>, [">= 1.3.1"])
+      s.add_runtime_dependency(%q<activesupport>, [">= 2.3.4"])
     else
-      s.add_dependency(%q<andand>, [">= 0"])
-      s.add_dependency(%q<activesupport>, [">= 0"])
+      s.add_dependency(%q<andand>, [">= 1.3.1"])
+      s.add_dependency(%q<activesupport>, [">= 2.3.4"])
     end
   else
-    s.add_dependency(%q<andand>, [">= 0"])
-    s.add_dependency(%q<activesupport>, [">= 0"])
+    s.add_dependency(%q<andand>, [">= 1.3.1"])
+    s.add_dependency(%q<activesupport>, [">= 2.3.4"])
   end
 end
 
