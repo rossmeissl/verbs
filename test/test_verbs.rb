@@ -1,11 +1,4 @@
 require 'helper'
-require 'active_support/version'
-%w{
-  active_support/core_ext/object/misc
-  active_support/inflector
-}.each do |active_support_3_requirement|
-  require active_support_3_requirement
-end if ActiveSupport::VERSION::MAJOR == 3
 
 class TestVerbs < Test::Unit::TestCase
   def test_copular_conjugation

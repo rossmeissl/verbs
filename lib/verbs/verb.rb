@@ -31,9 +31,9 @@ module Verbs
     def [](options = {})
       tense, person, plurality, derivative = options[:tense], options[:person], options[:plurality], options[:derivative]
       if tense and person and plurality
-        @forms[tense].andand[person].andand[plurality]
+        @forms[tense].try(:[], person).try(:[], plurality)
       elsif tense and derivative
-        @forms[tense].andand[derivative]
+        @forms[tense].try(:[], derivative)
       end
     end
   end
