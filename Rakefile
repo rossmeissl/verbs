@@ -1,53 +1,27 @@
 require 'rubygems'
-require 'rake'
 
 begin
-  require 'jeweler'
-  Jeweler::Tasks.new do |gem|
-    gem.name = "verbs"
-    gem.summary = %Q{English verb conjugation in Ruby}
-    gem.description = %Q{Conjugates most common english verbs for all persons in all tenses and all standard aspects (with active diathesis and indicative mood). Standard and exceptional spelling rules are obeyed.}
-    gem.email = "andy@rossmeissl.net"
-    gem.homepage = "http://github.com/rossmeissl/verbs"
-    gem.authors = ["Andy Rossmeissl"]
-    gem.add_dependency 'activesupport', '>=2.3.4'
-    # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
-  end
-  Jeweler::GemcutterTasks.new
+  require 'bundler'
 rescue LoadError
-  puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
+  $stderr.puts "You must install bundler - run `gem install bundler`"
 end
 
+begin
+  Bundler.setup
+rescue Bundler::BundlerError => e
+  $stderr.puts e.message
+  $stderr.puts "Run `bundle install` to install missing gems"
+  exit e.status_code
+end
+
+require 'bueller'
+Bueller::Tasks.new
+
+require 'rake'
 require 'rake/testtask'
 Rake::TestTask.new(:test) do |test|
   test.libs << 'lib' << 'test'
   test.pattern = 'test/**/test_*.rb'
   test.verbose = true
 end
-
-begin
-  require 'rcov/rcovtask'
-  Rcov::RcovTask.new do |test|
-    test.libs << 'test'
-    test.pattern = 'test/**/test_*.rb'
-    test.verbose = true
-  end
-rescue LoadError
-  task :rcov do
-    abort "RCov is not available. In order to run rcov, you must: sudo gem install spicycode-rcov"
-  end
-end
-
-task :test => :check_dependencies
-
 task :default => :test
-
-require 'rake/rdoctask'
-Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
-
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "verbs #{version}"
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
-end
