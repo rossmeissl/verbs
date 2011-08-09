@@ -1,6 +1,6 @@
 = verbs
 
-Conjugates most common english verbs for all persons in all tenses and all standard aspects (with active diathesis and indicative mood). Standard and exceptional spelling rules are obeyed.
+Conjugates most common english verbs for all persons, tenses, standard aspects, and modern moods (with active diathesis). Standard and exceptional spelling rules are obeyed.
 
   >> Verbs::Conjugator.conjugate :be, :tense => :past, :person => :second, :plurality => :singular, :aspect => :perfective
   => :were
@@ -9,7 +9,6 @@ Conjugates most common english verbs for all persons in all tenses and all stand
   >> :sleep.verb.conjugate :tense => :future, :person => :first, :plurality => :singular, :aspect => :progressive, :subject => true
   => :"I will be sleeping"
 
-  
 == Installation
 
 The gem is hosted at http://gemcutter.org/gems/verbs
@@ -37,6 +36,10 @@ Either <tt>:singular</tt> or <tt>:plural</tt>. Defaults to <tt>:singular</tt>.
 One of <tt>:habitual</tt>, <tt>:perfect</tt>, <tt>:perfective</tt>, <tt>:progressive</tt>, or <tt>:prospective</tt>. Defaults to <tt>:habitual</tt>.
 
 See below for a guide to verb aspect.
+
+=== <tt>:mood</tt>
+
+One of <tt>:indicative</tt>, <tt>:imperative</tt>, or <tt>:subjunctive</tt>. Defaults to <tt>:indicative</tt>.
 
 === <tt>:subject</tt>
 
