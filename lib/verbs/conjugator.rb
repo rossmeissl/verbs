@@ -39,12 +39,12 @@ module Verbs
       person = options[:person] ||       :third      # first, second, third
       plurality = options[:plurality] || :singular   # singular, plural
       diathesis = options[:diathesis] || :active     # active, passive
-      mood = options[:mood] ||           :indicative # conditional, imperative, indicative, injunctive, optative, potential, subjunctive
+      mood = options[:mood] ||           :indicative # imperative, subjunctive
       aspect = options[:aspect] ||       :habitual   # perfective, habitual, progressive, perfect, prospective
 
       form = form_for(tense, aspect)
 
-      conjugation = form.map { |e| resolve e, infinitive, tense, person, plurality }.join(' ').strip
+      conjugation = form.map { |e| resolve e, infinitive, tense, person, plurality, mood }.join(' ').strip
 
       if options[:subject]
         actor = options.delete(:subject)
@@ -71,27 +71,27 @@ module Verbs
 
     private
 
-    def resolve(element, infinitive, tense, person, plurality)
+    def resolve(element, infinitive, tense, person, plurality, mood)
       case element
       when String
         element
       when :infinitive
         infinitive
       when :present, :past, :present_participle, :past_participle
-        inflect infinitive, element, person, plurality
+        inflect infinitive, element, person, plurality, mood
       when Symbol
-        inflect element, tense, person, plurality
+        inflect element, tense, person, plurality, mood
       end
     end
 
-    def inflect(infinitive, inflection, person, plurality)
-      send(*([inflection, infinitive, person, plurality][0, method(inflection).arity + 1]))
+    def inflect(infinitive, inflection, person, plurality, mood)
+      send(*([inflection, infinitive, person, plurality, mood][0, method(inflection).arity + 1]))
     end
 
-    def present(infinitive, person, plurality)
+    def present(infinitive, person, plurality, mood)
       if verb = conjugations.irregulars[infinitive]
         conjugate_irregular(verb, :tense => :present, :person => person, :plurality => plurality)
-      elsif person == :third and plurality == :singular
+      elsif person == :third and plurality == :singular and not mood == :subjunctive
         present_third_person_singular_form_for infinitive
       else
         infinitive
