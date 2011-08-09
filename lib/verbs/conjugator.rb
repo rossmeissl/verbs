@@ -41,7 +41,9 @@ module Verbs
       diathesis = options[:diathesis] || :active     # active, passive
       mood = options[:mood] ||           :indicative # imperative, subjunctive
       aspect = options[:aspect] ||       :habitual   # perfective, habitual, progressive, perfect, prospective
-
+      
+      check_for_improper_constructions(tense, person, mood)
+      
       form = form_for(tense, aspect)
 
       conjugation = form.map { |e| resolve e, infinitive, tense, person, plurality, mood }.join(' ').strip
@@ -90,7 +92,7 @@ module Verbs
 
     def present(infinitive, person, plurality, mood)
       if verb = conjugations.irregulars[infinitive]
-        conjugate_irregular(verb, :tense => :present, :person => person, :plurality => plurality)
+        conjugate_irregular(verb, :tense => :present, :person => person, :plurality => plurality, :mood => mood)
       elsif person == :third and plurality == :singular and not mood == :subjunctive
         present_third_person_singular_form_for infinitive
       else
@@ -98,9 +100,9 @@ module Verbs
       end
     end
 
-    def past(infinitive, person, plurality)
+    def past(infinitive, person, plurality, mood)
       if verb = conjugations.irregulars[infinitive]
-        conjugate_irregular(verb, :tense => :past, :person => person, :plurality => plurality)
+        conjugate_irregular(verb, :tense => :past, :person => person, :plurality => plurality, :mood => mood)
       else
         regular_preterite_for infinitive
       end
@@ -208,6 +210,12 @@ module Verbs
         form.concat [:be, 'having', :past_participle] if [tense, aspect] == [:present, :perfective]
       end
       form
+    end
+    
+    def check_for_improper_constructions(tense, person, mood)
+      if mood == :imperative and not (person == :second and tense == :present)
+        raise Verbs::ImproperConstruction, 'The imperative mood requires present tense and second person'
+      end
     end
   end
 end

@@ -5,6 +5,7 @@ require 'verbs/verb'
 require 'verbs/conjugator'
 require 'verbs/conjugations'
 require 'verbs/verblike'
+require 'verbs/improper_construction'
 
 module Verbs
   CONSONANTS = %w(b c d f g h j k l m n p q r s t v w x z)

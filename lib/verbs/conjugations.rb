@@ -11,6 +11,8 @@ Verbs::Conjugator.conjugations do |conjugate|
     verb.form :were,  :tense => :past,    :person => :second, :plurality => :singular
     verb.form :were,  :tense => :past,    :person => :first,  :plurality => :plural
     verb.form :were,  :tense => :past,    :person => :third,  :plurality => :plural
+    verb.form :were,  :tense => :past,    :mood => :subjunctive
+    verb.form :be,    :tense => :present, :mood => :subjunctive
     verb.form :being, :tense => :present, :derivative => :participle
     verb.form :been,  :tense => :past,    :derivative => :participle
   end
