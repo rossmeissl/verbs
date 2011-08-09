@@ -105,4 +105,16 @@ class TestVerbs < Test::Unit::TestCase
       assert_equal 'I will be about to accept', standard.conjugate(:accept, :tense => :future, :aspect => :prospective)
     end
   end
+  def test_mood
+    assert_equal Verbs::Conjugator.conjugate(:accept, :person => :third), Verbs::Conjugator.conjugate(:accept, :person => :third, :mood => :indicative)
+    assert_equal 'accept', Verbs::Conjugator.conjugate(:accept, :person => :third, :mood => :subjunctive)
+    assert_equal 'be', Verbs::Conjugator.conjugate(:be, :mood => :subjunctive, :tense => :present)
+    assert_equal 'were', Verbs::Conjugator.conjugate(:be, :mood => :subjunctive, :tense => :past)
+    assert_equal 'accept', Verbs::Conjugator.conjugate(:accept, :person => :second, :mood => :imperative)
+  end
+  def test_improper_construction
+    assert_raise Verbs::ImproperConstruction do
+      Verbs::Conjugator.conjugate(:accept, :mood => :imperative)
+    end
+  end
 end
