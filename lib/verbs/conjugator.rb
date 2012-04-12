@@ -109,18 +109,23 @@ module Verbs
     end
 
     def present_participle(infinitive)
-      if verb = conjugations.irregulars[infinitive]
-        conjugate_irregular(verb, :tense => :present, :derivative => :participle)
+      if result = conjugations.irregulars[infinitive].try(:[], { :tense => :present, :derivative => :participle })
+        result
       elsif infinitive.to_s.match(/#{CONSONANT_PATTERN}#{VOWEL_PATTERN}#{CONSONANT_PATTERN}$/) and !conjugations.single_terminal_consonants.include?(infinitive)
         present_participle_with_doubled_terminal_consonant_for infinitive
-      elsif infinitive.to_s.match(/c$/)
-        infinitive.to_s.concat('king').to_sym
-      elsif infinitive.to_s.match(/ye$/) or infinitive.to_s.match(/oe$/) or infinitive.to_s.match(/nge$/) or infinitive.to_s.match(/ee$/)
-        infinitive.to_s.concat('ing').to_sym
-      elsif infinitive.to_s.match(/ie$/)
-        infinitive.to_s[0..-2].concat('ying').to_sym
       else
-        infinitive.to_s[0..-1].concat('ing').to_sym
+        case infinitive
+        when /c$/
+          "#{infinitive}k"
+        when /(ye|oe|nge|ee)$/
+          infinitive.to_s
+        when /ie$/
+          "#{infinitive.to_s[0..-2]}y"
+        when /#{VOWEL_PATTERN}#{CONSONANT_PATTERN}e$/
+          infinitive.to_s[0..-2]
+        else
+          infinitive.to_s[0..-1]
+        end.concat('ing').to_sym
       end
     end
 
