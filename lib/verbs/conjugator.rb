@@ -109,7 +109,9 @@ module Verbs
     end
 
     def present_participle(infinitive)
-      if infinitive.to_s.match(/#{CONSONANT_PATTERN}#{VOWEL_PATTERN}#{CONSONANT_PATTERN}$/) and !conjugations.single_terminal_consonants.include?(infinitive)
+      if verb = conjugations.irregulars[infinitive]
+        conjugate_irregular(verb, :tense => :present, :derivative => :participle)
+      elsif infinitive.to_s.match(/#{CONSONANT_PATTERN}#{VOWEL_PATTERN}#{CONSONANT_PATTERN}$/) and !conjugations.single_terminal_consonants.include?(infinitive)
         present_participle_with_doubled_terminal_consonant_for infinitive
       elsif infinitive.to_s.match(/c$/)
         infinitive.to_s.concat('king').to_sym
