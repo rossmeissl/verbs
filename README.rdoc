@@ -11,8 +11,6 @@ Conjugates most common english verbs for all persons, tenses, standard aspects, 
 
 == Installation
 
-The gem is hosted at http://gemcutter.org/gems/verbs
-
   gem install verbs
   
 == Options
