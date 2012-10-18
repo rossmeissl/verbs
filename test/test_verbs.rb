@@ -26,6 +26,11 @@ class TestVerbs < Test::Unit::TestCase
     assert_equal 'broke', Verbs::Conjugator.conjugate(:break, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective)
     assert_equal 'has', Verbs::Conjugator.conjugate(:have, :tense => :present, :person => :third, :plurality => :singular, :aspect => :habitual)
   end
+  def test_know
+    assert_equal 'had known', Verbs::Conjugator.conjugate(:know, :tense => :past, :person => :third, :plurality => :singular, :aspect => :perfect)
+    assert_equal 'knew', Verbs::Conjugator.conjugate(:know, :tense => :past, :person => :third, :plurality => :singular, :aspect => :perfective)
+    assert_equal 'was knowing', Verbs::Conjugator.conjugate(:know, :tense => :past, :person => :third, :plurality => :singular, :aspect => :progressive)
+  end
   def test_irregular_conjugation_with_terminal_y
     assert_equal 'flies', Verbs::Conjugator.conjugate(:fly, :tense => :present, :person => :third, :plurality => :singular, :aspect => :habitual)
     assert_equal 'carried', Verbs::Conjugator.conjugate(:carry, :tense => :past, :person => :third, :plurality => :singular, :aspect => :perfective)

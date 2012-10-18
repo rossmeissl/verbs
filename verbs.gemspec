@@ -19,5 +19,6 @@ Gem::Specification.new do |s|
   
   s.add_development_dependency 'bueller'
   s.add_dependency 'activesupport', '>= 2.3.4'
+  s.add_dependency 'i18n'
 end
 
