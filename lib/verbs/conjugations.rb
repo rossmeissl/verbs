@@ -101,7 +101,7 @@ Verbs::Conjugator.conjugations do |conjugate|
   conjugate.irregular :keep, :kept, :kept
   conjugate.irregular :kneel, :knelt, :knelt
   conjugate.irregular :knit, :knit, :knit
-  conjugate.irregular :know, :knew, :know
+  conjugate.irregular :know, :knew, :known
   conjugate.irregular :lay, :laid, :laid
   conjugate.irregular :lead, :led, :led
   conjugate.irregular :leap, :leaped, :leaped
@@ -332,6 +332,7 @@ Verbs::Conjugator.conjugations do |conjugate|
   conjugate.single_terminal_consonant :inspirit
   conjugate.single_terminal_consonant :interpret
   conjugate.single_terminal_consonant :iron
+  conjugate.single_terminal_consonant :know
   conjugate.single_terminal_consonant :laten
   conjugate.single_terminal_consonant :launder
   conjugate.single_terminal_consonant :lengthen
