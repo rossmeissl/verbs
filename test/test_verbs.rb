@@ -65,6 +65,7 @@ class TestVerbs < Test::Unit::TestCase
   end
   def test_regular_conjugation_with_terminal_e
     assert_equal 'created', Verbs::Conjugator.conjugate(:create, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective)
+    assert_equal 'was hiding', Verbs::Conjugator.conjugate(:hide, :tense => :past, :person => :first, :plurality => :singular, :aspect => :progressive)
   end
   def test_regular_conjugation_with_unusual_terminal_e
     assert_equal 'dyed', Verbs::Conjugator.conjugate(:dye, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective)

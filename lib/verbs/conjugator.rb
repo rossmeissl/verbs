@@ -117,6 +117,8 @@ module Verbs
         infinitive.to_s.concat('ing').to_sym
       elsif infinitive.to_s.match(/ie$/)
         infinitive.to_s[0..-2].concat('ying').to_sym
+      elsif infinitive.to_s.match(/e$/)
+        infinitive.to_s[0..-2].concat('ing').to_sym
       else
         infinitive.to_s[0..-1].concat('ing').to_sym
       end
