@@ -138,6 +138,7 @@ class TestVerbs < Test::Unit::TestCase
       assert_equal 'dies', standard.conjugate('die')
       assert_equal 'glues', standard.conjugate('glue')
       assert_equal 'moos', standard.conjugate('moo')
+      assert_equal 'changes', standard.conjugate('change')
     end
   end
 end

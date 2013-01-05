@@ -156,7 +156,7 @@ module Verbs
 
       if infinitive =~ /[a-z&&[^aeiou]]y$/i
         infinitive[0..-2] + 'ies'
-      elsif infinitive =~ /ss|sh|t?ch|zz|x|[^aeiuo]o$/i
+      elsif infinitive =~ /(ss|sh|t?ch|zz|x|[^aeiuo]o)$/i
         infinitive + 'es'
       else
         infinitive + 's'
