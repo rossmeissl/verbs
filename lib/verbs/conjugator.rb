@@ -152,28 +152,20 @@ module Verbs
     end
 
     def present_third_person_singular_form_for(verb)
-      infinitive = case verb
-      when Verb
-        verb.infinitive
-      when String, Symbol
-        verb.to_sym
-      end
-      if infinitive.to_s.match(/#{CONSONANT_PATTERN}y$/)
-        infinitive.to_s.gsub(/y$/, 'ies').to_sym
-      elsif infinitive.to_s.match(/[szx]$/) or infinitive.to_s.match(/[sc]h$/)
-        infinitive.to_s.concat('es').to_sym
+      infinitive = verb.is_a?(Verb) ? verb.infinitive.to_s : verb.to_s
+
+      if infinitive =~ /[a-z&&[^aeiou]]y$/i
+        infinitive[0..-2] + 'ies'
+      elsif infinitive =~ /(ss|sh|t?ch|zz|x|[^aeiuo]o)$/i
+        infinitive + 'es'
       else
-        infinitive.to_s.concat('s').to_sym
+        infinitive + 's'
       end
     end
 
     def regular_preterite_for(verb)
-      infinitive = case verb
-      when Verb
-        verb.infinitive
-      when String, Symbol
-        verb.to_sym
-      end
+      infinitive = verb.is_a?(Verb) ? verb.infinitive.to_s : verb.to_s
+      
       if verb.to_s.match(/#{CONSONANT_PATTERN}#{VOWEL_PATTERN}#{DOUBLED_CONSONANT_PATTERN}$/) and !conjugations.single_terminal_consonants.include?(verb)
         regular_preterite_with_doubled_terminal_consonant_for verb
       elsif verb.to_s.match(/#{CONSONANT_PATTERN}e$/) or verb.to_s.match(/ye$/) or verb.to_s.match(/oe$/) or verb.to_s.match(/nge$/) or verb.to_s.match(/ie$/) or verb.to_s.match(/ee$/)
