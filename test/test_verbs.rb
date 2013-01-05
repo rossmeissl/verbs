@@ -123,4 +123,21 @@ class TestVerbs < Test::Unit::TestCase
       Verbs::Conjugator.conjugate(:accept, :mood => :imperative)
     end
   end
+
+  def test_s_forms
+    Verbs::Conjugator.with_options :person => :third, :tense => :present do |standard|
+      assert_equal 'does', standard.conjugate('do')
+      assert_equal 'flies', standard.conjugate('fly')
+      assert_equal 'assesses', standard.conjugate('assess')
+      assert_equal 'blushes', standard.conjugate('blush')
+      assert_equal 'catches', standard.conjugate('catch')
+      assert_equal 'fizzes', standard.conjugate('fizz')
+      assert_equal 'relaxes', standard.conjugate('relax')
+      assert_equal 'bakes', standard.conjugate('bake')
+      assert_equal 'calls', standard.conjugate('call')
+      assert_equal 'dies', standard.conjugate('die')
+      assert_equal 'glues', standard.conjugate('glue')
+      assert_equal 'moos', standard.conjugate('moo')
+    end
+  end
 end
