@@ -70,7 +70,8 @@ Set this to a string to prepend the conjugated verb with it. When set to <tt>tru
 * {Lingua::Conjugate}[http://cpansearch.perl.org/src/RWG/Lingua-EN-Conjugate-0.308/lib/Lingua/EN/Conjugate.pm]
 * {Pat Byrd and Tom McKlin}[http://www2.gsu.edu/~wwwesl/egw/pluralsv.htm]
 * {Rick Harrison}[http://www.rickharrison.com/language/aspect.html]
+* {Anatoli Makarevich}[https://github.com/makaroni4] for {#6}[https://github.com/rossmeissl/verbs/pull/6]
 
 == Copyright
 
-Copyright (c) 2009 Andy Rossmeissl. See LICENSE for details.
+Copyright (c) 2012 Andy Rossmeissl. See LICENSE for details.
