@@ -154,9 +154,9 @@ module Verbs
     def present_third_person_singular_form_for(verb)
       infinitive = verb.is_a?(Verb) ? verb.infinitive.to_s : verb.to_s
 
-      if infinitive =~ /[a-z&&[^aeiou]]y$/i
+      if infinitive =~ /[a-z&&#{CONSONANT_PATTERN}]y$/i
         infinitive[0..-2] + 'ies'
-      elsif infinitive =~ /(ss|sh|t?ch|zz|x|[^aeiuo]o)$/i
+      elsif infinitive =~ /(ss|sh|t?ch|zz|x|#{CONSONANT_PATTERN}o)$/i
         infinitive + 'es'
       else
         infinitive + 's'
