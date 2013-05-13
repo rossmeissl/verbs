@@ -198,7 +198,7 @@ Verbs::Conjugator.conjugations do |conjugate|
   conjugate.irregular :upset, :upset, :upset
   conjugate.irregular :wake, :woke, :woken
   conjugate.irregular :wear, :wore, :worn
-  conjugate.irregular :weave, :weaved, :weaved
+  conjugate.irregular :weave, :wove, :woven
   conjugate.irregular :wed, :wed, :wed
   conjugate.irregular :weep, :wept, :wept
   conjugate.irregular :wind, :wound, :wound
