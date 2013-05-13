@@ -128,6 +128,7 @@ Verbs::Conjugator.conjugations do |conjugate|
   conjugate.irregular :put, :put, :put
   conjugate.irregular :quit, :quit, :quit
   conjugate.irregular :read, :read, :read
+  conjugate.irregular :reset, :reset, :reset
   conjugate.irregular :rid, :rid, :rid
   conjugate.irregular :ride, :rode, :ridden
   conjugate.irregular :ring, :rang, :rung
