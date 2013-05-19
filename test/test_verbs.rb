@@ -76,6 +76,7 @@ class TestVerbs < Test::Unit::TestCase
   end
   def test_conjugation_with_terminal_sibilance
     assert_equal 'passes', Verbs::Conjugator.conjugate(:pass, :tense => :present, :person => :third, :plurality => :singular, :aspect => :habitual)
+    assert_equal 'focusses', Verbs::Conjugator.conjugate(:focus, :tense => :present, :person => :third, :plurality => :singular, :aspect => :habitual)
     assert_equal 'buzzes', Verbs::Conjugator.conjugate(:buzz, :tense => :present, :person => :third, :plurality => :singular, :aspect => :habitual)
     assert_equal 'coaxes', Verbs::Conjugator.conjugate(:coax, :tense => :present, :person => :third, :plurality => :singular, :aspect => :habitual)
     assert_equal 'washes', Verbs::Conjugator.conjugate(:wash, :tense => :present, :person => :third, :plurality => :singular, :aspect => :habitual)
