@@ -158,6 +158,8 @@ module Verbs
         infinitive[0..-2] + 'ies'
       elsif infinitive =~ /(ss|sh|t?ch|zz|x|#{CONSONANT_PATTERN}o)$/i
         infinitive + 'es'
+      elsif infinitive =~ /[^s]s$/i
+        infinitive + 'ses'
       else
         infinitive + 's'
       end
