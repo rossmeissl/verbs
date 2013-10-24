@@ -251,6 +251,7 @@ Verbs::Conjugator.conjugations do |conjugate|
   conjugate.single_terminal_consonant :cocker
   conjugate.single_terminal_consonant :coedit
   conjugate.single_terminal_consonant :cohabit
+  conjugate.single_terminal_consonant :color
   conjugate.single_terminal_consonant :concenter
   conjugate.single_terminal_consonant :corner
   conjugate.single_terminal_consonant :cover
@@ -428,6 +429,7 @@ Verbs::Conjugator.conjugations do |conjugate|
   conjugate.single_terminal_consonant :toughen
   conjugate.single_terminal_consonant :tower
   conjugate.single_terminal_consonant :transit
+  conjugate.single_terminal_consonant :trigger
   conjugate.single_terminal_consonant :tucker
   conjugate.single_terminal_consonant :unburden
   conjugate.single_terminal_consonant :uncover
