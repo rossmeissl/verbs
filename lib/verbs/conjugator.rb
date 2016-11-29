@@ -35,6 +35,8 @@ module Verbs
     end
 
     def conjugate(infinitive, options = {})
+      infinitive = infinitive.dup if infinitive.is_a?(String)
+      
       tense = options[:tense] ||         :present    # present, past, future
       person = options[:person] ||       :third      # first, second, third
       plurality = options[:plurality] || :singular   # singular, plural
