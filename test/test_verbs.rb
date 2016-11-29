@@ -144,4 +144,10 @@ class TestVerbs < Test::Unit::TestCase
       assert_equal 'changes', standard.conjugate('change')
     end
   end
+
+  def test_immutability
+    verb = 'like'
+    Verbs::Conjugator.conjugate(verb, :tense => :past, :aspect => :perfective)
+    assert_equal 'like', verb
+  end
 end
