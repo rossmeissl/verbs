@@ -30,9 +30,9 @@ module Verbs
       # Determines irregular verbs from the expression
       # Params:
       # * infinitive, the given verb
-      # * preterite
-      # * past_participle
-      # * &blk
+      # * preterite, denote events that took place in the past
+      # * past_participle, form of a verb, ending in 'ed'
+      # * &blk, block of code that may be run
       def irregular(infinitive, preterite = nil, past_participle = nil, &blk)
         if block_given?
           # create new Verb object with infinitive and &blk
@@ -47,7 +47,7 @@ module Verbs
 
       # Find single terminal consonant with the infinitive
       # Params:
-      # * infinitive
+      # * infinitive, the given verb
       def single_terminal_consonant(infinitive)
         @single_terminal_consonants << infinitive
       end
@@ -79,19 +79,14 @@ module Verbs
       mood = options[:mood] ||           :indicative # imperative, subjunctive
       aspect = options[:aspect] ||       :habitual   # perfective, habitual, progressive, perfect, prospective
 
-      # find incompatabilities
-      check_for_improper_constructions(tense, person, mood)
-
-      # find form array based on tense and aspect
-      form = form_for(tense, aspect)
+      check_for_improper_constructions(tense, person, mood)   # find incompatabilities
+      form = form_for(tense, aspect)                          # find form array based on tense and aspect
 
       # map form array to conjugation array, applying infinitive and options to the array
       conjugation = form.map { |e| resolve e, infinitive, tense, person, plurality, mood }.join(' ').strip
 
-      # When options includes a subject,
-      # remove from options and make subject humanized
-      if options[:subject]
-        actor = options.delete(:subject)
+      if options[:subject]                   # When options includes a subject,
+        actor = options.delete(:subject)     # remove from options and make subject humanized
         actor = subject(options).humanize if actor.is_a?(TrueClass)
       end
 
@@ -119,6 +114,14 @@ module Verbs
 
     private
 
+    # Resolves conflictions between options of the conjugation
+    # Params:
+    # * element,
+    # * infinitive, the given verb
+    # * tense, an option given by the user
+    # * person, an option given by the user
+    # * plurality, an option given by the user
+    # * mood, an option given by the user
     def resolve(element, infinitive, tense, person, plurality, mood)
       case element
       when String
@@ -132,6 +135,13 @@ module Verbs
       end
     end
 
+    # Change the form to express the proper grammatical function
+    # Params:
+    # * infinitive,the given verb
+    # * inflection, form to be changed
+    # * person, an option given by the user
+    # * plurality, an option given by the user
+    # * mood, an option given by the user
     def inflect(infinitive, inflection, person, plurality, mood)
       send(*([inflection, infinitive, person, plurality, mood][0, method(inflection).arity + 1]))
     end
@@ -146,6 +156,12 @@ module Verbs
       end
     end
 
+    # Conjugate verb to past with relevent options determining outcome
+    # Params:
+    # * infinitive, the given verb
+    # * person, the subject of the verb
+    # * plurality, an option given by the user
+    # * mood, an option given by the user
     def past(infinitive, person, plurality, mood)
       if verb = conjugations.irregulars[infinitive]
         conjugate_irregular(verb, :tense => :past, :person => person, :plurality => plurality, :mood => mood)
@@ -154,6 +170,9 @@ module Verbs
       end
     end
 
+    # Forming verb to apply present tense endings
+    # Params:
+    # * infinitive, the given verb
     def present_participle(infinitive)
       if infinitive.to_s.match(/#{CONSONANT_PATTERN}#{VOWEL_PATTERN}#{CONSONANT_PATTERN}$/) and !conjugations.single_terminal_consonants.include?(infinitive)
         present_participle_with_doubled_terminal_consonant_for infinitive
@@ -170,6 +189,9 @@ module Verbs
       end
     end
 
+    # Forming verb to apply past tense endings
+    # Params:
+    # * infinitive, the given verb
     def past_participle(infinitive)
       if verb = conjugations.irregulars[infinitive]
         conjugate_irregular(verb, :tense => :past, :derivative => :participle)
@@ -178,6 +200,10 @@ module Verbs
       end
     end
 
+    # 
+    # Params:
+    # * verb, 
+    # * options, 
     def conjugate_irregular(verb, options)
       return verb[options] if verb[options]
 
@@ -197,6 +223,9 @@ module Verbs
       end
     end
 
+    # Apply thir person rules to the verb for the conjugation
+    # Params:
+    # * verb, apply proper third person rules to this
     def present_third_person_singular_form_for(verb)
       infinitive = verb.is_a?(Verb) ? verb.infinitive.to_s : verb.to_s
 
@@ -211,6 +240,9 @@ module Verbs
       end
     end
 
+    # Apply the regular past tense to a given verb for the conjugation
+    # Params:
+    # * verb, apply regular past tense rules to this
     def regular_preterite_for(verb)
       infinitive = verb.is_a?(Verb) ? verb.infinitive.to_s : verb.to_s
 
@@ -225,14 +257,24 @@ module Verbs
       end
     end
 
+    # Apply proper rules to consonant endings
+    # Params:
+    # * verb, apply doule consonant to this
     def regular_preterite_with_doubled_terminal_consonant_for(verb)
       regular_preterite_for verb.to_s.concat(verb.to_s[-1,1]).to_sym
     end
 
+    # Apply proper rules to consonant endings
+    # Params:
+    # * verb, apply doule consonant to this
     def present_participle_with_doubled_terminal_consonant_for(verb)
       present_participle verb.to_s.concat(verb.to_s[-1,1]).to_sym
     end
 
+    # Add appropriate aspects to the tense of the conjugation
+    # Params:
+    # * tense, an option given by the user
+    # * aspect, an option given by the user
     def form_for(tense, aspect)
       form = []
       if tense == :future
@@ -254,6 +296,11 @@ module Verbs
       form
     end
 
+    # Confirm an imperative mood contains the present tense and second person
+    # Params:
+    # * tense, an option given by the user
+    # * person, how the conjugation refers to the subject
+    # * mood, an option given by the user
     def check_for_improper_constructions(tense, person, mood)
       if mood == :imperative and not (person == :second and tense == :present)
         raise Verbs::ImproperConstruction, 'The imperative mood requires present tense and second person'
