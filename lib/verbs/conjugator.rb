@@ -1,31 +1,60 @@
+# The program conjugates most common english verbs with the following option:
+# * :tense => :past or :present or :future
+# * :person => :first or :second or :third
+# * :plurality => :singular or :plural
+# * :aspect => :habitual or :perfect or :perfective or :progressive or :prospective
+# * :mood => :indicative or :imperative or :subjunctive
+# Respective defaults are :present, :third, :singular, :habitual, and :indicative
+#
+# Author::    Andy Rossmeissl
+# Copyright:: Copyright (c) 2009 Andy Rossmeissl
+# License::   Found in LICENSE file
+
 module Verbs
   module Conjugator
     extend self
 
+    # This class determines the conjugations from the given options (or defaults)
+    # conjugations are then applied to the verb
     class Conjugations
       include Singleton
 
+      # permit outside functions access to these variables
       attr_reader :irregulars, :single_terminal_consonants, :copulars
 
+      # Creates initial variables for class
       def initialize
         @irregulars, @single_terminal_consonants, @copulars = {}, [], {}
       end
 
+      # Determines irregular verbs from the expression
+      # Params:
+      # * infinitive, the given verb
+      # * preterite
+      # * past_participle
+      # * &blk
       def irregular(infinitive, preterite = nil, past_participle = nil, &blk)
         if block_given?
+          # create new Verb object with infinitive and &blk
           irregular = ::Verbs::Verb.new infinitive, &blk
         else
           raise ArgumentError, "Standard irregular verbs must specify preterite and past participle forms" unless preterite and past_participle
+          # create new Verb object with infinitive, preterite and past_participle
           irregular = ::Verbs::Verb.new infinitive, :preterite => preterite, :past_participle => past_participle
         end
         @irregulars[infinitive] = irregular
       end
 
+      # Find single terminal consonant with the infinitive
+      # Params:
+      # * infinitive
       def single_terminal_consonant(infinitive)
         @single_terminal_consonants << infinitive
       end
     end
 
+    # Runs a block of code if given in a class instance
+    # else only class instance is created
     def conjugations
       if block_given?
         yield Conjugations.instance
@@ -34,22 +63,33 @@ module Verbs
       end
     end
 
+    # Using options given, determine the conjugation and the subject
+    # Return the subject, if there is one, and the proper conjugation
+    # Params:
+    # * infinitive, the given verb
+    # * options, the list of parameters to alter the conjugation
     def conjugate(infinitive, options = {})
       infinitive = infinitive.dup if infinitive.is_a?(String)
-      
+
+      # set all options according to parameter, or the default
       tense = options[:tense] ||         :present    # present, past, future
       person = options[:person] ||       :third      # first, second, third
       plurality = options[:plurality] || :singular   # singular, plural
       diathesis = options[:diathesis] || :active     # active, passive
       mood = options[:mood] ||           :indicative # imperative, subjunctive
       aspect = options[:aspect] ||       :habitual   # perfective, habitual, progressive, perfect, prospective
-      
+
+      # find incompatabilities
       check_for_improper_constructions(tense, person, mood)
-      
+
+      # find form array based on tense and aspect
       form = form_for(tense, aspect)
 
+      # map form array to conjugation array, applying infinitive and options to the array
       conjugation = form.map { |e| resolve e, infinitive, tense, person, plurality, mood }.join(' ').strip
 
+      # When options includes a subject,
+      # remove from options and make subject humanized
       if options[:subject]
         actor = options.delete(:subject)
         actor = subject(options).humanize if actor.is_a?(TrueClass)
@@ -58,6 +98,10 @@ module Verbs
       "#{actor} #{conjugation}".strip
     end
 
+    # Finds the pronoun associated with the subject for the conjugation
+    # Returns the pronoun
+    # Params:
+    # * options, list of options given to determine conjugation
     def subject(options)
       case [options[:person], options[:plurality]]
       when [:first, :singular]
@@ -169,7 +213,7 @@ module Verbs
 
     def regular_preterite_for(verb)
       infinitive = verb.is_a?(Verb) ? verb.infinitive.to_s : verb.to_s
-      
+
       if verb.to_s.match(/#{CONSONANT_PATTERN}#{VOWEL_PATTERN}#{DOUBLED_CONSONANT_PATTERN}$/) and !conjugations.single_terminal_consonants.include?(verb)
         regular_preterite_with_doubled_terminal_consonant_for verb
       elsif verb.to_s.match(/#{CONSONANT_PATTERN}e$/) or verb.to_s.match(/ye$/) or verb.to_s.match(/oe$/) or verb.to_s.match(/nge$/) or verb.to_s.match(/ie$/) or verb.to_s.match(/ee$/)
@@ -209,7 +253,7 @@ module Verbs
       end
       form
     end
-    
+
     def check_for_improper_constructions(tense, person, mood)
       if mood == :imperative and not (person == :second and tense == :present)
         raise Verbs::ImproperConstruction, 'The imperative mood requires present tense and second person'
