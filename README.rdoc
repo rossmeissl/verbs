@@ -55,13 +55,13 @@ Set this to a string to prepend the conjugated verb with it. When set to <tt>tru
   
   I accept                  present  habitual
   I have accepted           present  perfect
-  I am having accepted      present  perfective
+  (None)                    present  perfective 
   I am accepting            present  progressive
   I am about to accept      present  prospective
   
   I will accept             future   habitual
   I will have accepted      future   perfect
-  I will be having accepted future   perfective
+  (None)                    future   perfective 
   I will be accepting       future   progressive
   I will be about to accept future   prospective
   
