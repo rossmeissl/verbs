@@ -21,6 +21,10 @@ class TestVerbs < Test::Unit::TestCase
     assert_equal 'was', Verbs::Conjugator.conjugate(:be, :tense => :past, :person => :third, :plurality => :singular, :aspect => :perfective)
     assert_equal 'were', Verbs::Conjugator.conjugate(:be, :tense => :past, :person => :first, :plurality => :plural, :aspect => :perfective)
     assert_equal 'were', Verbs::Conjugator.conjugate(:be, :tense => :past, :person => :third, :plurality => :plural, :aspect => :perfective)
+
+    assert_equal 'was being', Verbs::Conjugator.conjugate(:be, :tense => :past, :person => :third, :aspect => :progressive)
+    assert_equal 'is being', Verbs::Conjugator.conjugate(:be, :tense => :present, :person => :third,  :aspect => :progressive)
+    assert_equal 'will be being', Verbs::Conjugator.conjugate(:be, :tense => :future, :person => :third, :aspect => :progressive)
   end
   def test_irregular_conjugation
     assert_equal 'break', Verbs::Conjugator.conjugate(:break, :tense => :present, :person => :first, :plurality => :singular, :aspect => :habitual)
