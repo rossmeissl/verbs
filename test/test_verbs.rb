@@ -150,4 +150,13 @@ class TestVerbs < Test::Unit::TestCase
     Verbs::Conjugator.conjugate(verb, :tense => :past, :aspect => :perfective)
     assert_equal 'like', verb
   end
+
+  def test_second_person_plural_forms
+    Verbs::Conjugator.with_options :person => :second, :plurality => :plural, :subject => true do |standard|
+      assert_equal 'You had accepted',            standard.conjugate(:accept, :tense => :past, :aspect => :perfect)
+      assert_equal 'You accepted',                standard.conjugate(:accept, :tense => :past, :aspect => :perfective)
+      assert_equal 'You were accepting',           standard.conjugate(:accept, :tense => :past, :aspect => :progressive)
+      assert_equal 'You were about to accept',     standard.conjugate(:accept, :tense => :past, :aspect => :prospective)
+    end
+  end
 end
