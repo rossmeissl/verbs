@@ -285,7 +285,7 @@ module Verbs
         form.concat ['be', :present_participle] if aspect == :progressive
         form.concat ['be about to', :infinitive] if aspect == :prospective
       else
-        form.concat ['usually', :past_participle] if [tense, aspect] == [:past, :habitual]
+        form.concat ['used to', :infinitive] if [tense, aspect] == [:past, :habitual]
         form.concat [:have, :past_participle] if aspect == :perfect
         form << :past if [tense, aspect] == [:past, :perfective]
         form.concat [:be, :present_participle] if aspect == :progressive
