@@ -178,7 +178,7 @@ module Verbs
         present_participle_with_doubled_terminal_consonant_for infinitive
       elsif infinitive.to_s.match(/c$/)
         infinitive.to_s.concat('king').to_sym
-      elsif infinitive.to_s.match(/ye$/) or infinitive.to_s.match(/oe$/) or infinitive.to_s.match(/nge$/) or infinitive.to_s.match(/ee$/)
+      elsif infinitive.to_s.match(/^be$/) or infinitive.to_s.match(/ye$/) or infinitive.to_s.match(/oe$/) or infinitive.to_s.match(/nge$/) or infinitive.to_s.match(/ee$/)
         infinitive.to_s.concat('ing').to_sym
       elsif infinitive.to_s.match(/ie$/)
         infinitive.to_s[0..-2].concat('ying').to_sym
