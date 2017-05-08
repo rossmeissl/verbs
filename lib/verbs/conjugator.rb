@@ -44,7 +44,7 @@ module Verbs
       mood = options[:mood] ||           :indicative # imperative, subjunctive
       aspect = options[:aspect] ||       :habitual   # perfective, habitual, progressive, perfect, prospective
       
-      check_for_improper_constructions(tense, person, mood)
+      check_for_improper_constructions(tense, person, mood, aspect)
       
       form = form_for(tense, aspect)
 
@@ -210,9 +210,13 @@ module Verbs
       form
     end
     
-    def check_for_improper_constructions(tense, person, mood)
+    def check_for_improper_constructions(tense, person, mood, aspect)
       if mood == :imperative and not (person == :second and tense == :present)
         raise Verbs::ImproperConstruction, 'The imperative mood requires present tense and second person'
+      end
+
+      if (tense == :present or tense == :future) and aspect == :perfective
+        raise Verbs::ImproperConstruction, 'The perfective aspect is only used with the past tense'
       end
     end
   end

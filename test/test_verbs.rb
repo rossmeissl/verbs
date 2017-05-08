@@ -104,12 +104,16 @@ class TestVerbs < Test::Unit::TestCase
       assert_equal 'I was about to accept',     standard.conjugate(:accept, :tense => :past, :aspect => :prospective)
       assert_equal 'I accept',                  standard.conjugate(:accept, :tense => :present, :aspect => :habitual)
       assert_equal 'I have accepted',           standard.conjugate(:accept, :tense => :present, :aspect => :perfect)
-      assert_equal 'I am having accepted',      standard.conjugate(:accept, :tense => :present, :aspect => :perfective)
+      assert_raise Verbs::ImproperConstruction do
+        standard.conjugate(:accept, :tense => :present, :aspect => :perfective)
+      end
       assert_equal 'I am accepting',            standard.conjugate(:accept, :tense => :present, :aspect => :progressive)
       assert_equal 'I am about to accept',      standard.conjugate(:accept, :tense => :present, :aspect => :prospective)
       assert_equal 'I will accept',             standard.conjugate(:accept, :tense => :future, :aspect => :habitual)
       assert_equal 'I will have accepted',      standard.conjugate(:accept, :tense => :future, :aspect => :perfect)
-      assert_equal 'I will be having accepted', standard.conjugate(:accept, :tense => :future, :aspect => :perfective)
+      assert_raise Verbs::ImproperConstruction do
+        standard.conjugate(:accept, :tense => :future, :aspect => :perfective)
+      end
       assert_equal 'I will be accepting',       standard.conjugate(:accept, :tense => :future, :aspect => :progressive)
       assert_equal 'I will be about to accept', standard.conjugate(:accept, :tense => :future, :aspect => :prospective)
     end
