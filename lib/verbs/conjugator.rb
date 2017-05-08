@@ -75,12 +75,12 @@ module Verbs
       tense = options[:tense] ||         :present    # present, past, future
       person = options[:person] ||       :third      # first, second, third
       plurality = options[:plurality] || :singular   # singular, plural
-      diathesis = options[:diathesis] || :active     # active, passive
+      voice = options[:voice] ||         :active     # active, passive
       mood = options[:mood] ||           :indicative # imperative, subjunctive
       aspect = options[:aspect] ||       :habitual   # perfective, habitual, progressive, perfect, prospective
 
-      check_for_improper_constructions(tense, person, mood)   # find incompatabilities
-      form = form_for(tense, aspect)                          # find form array based on tense and aspect
+      check_for_improper_constructions(infinitive, tense, person, mood, voice) # find incompatabilities
+      form = form_for(tense, aspect, voice)                                    # find form array based on tense and aspect
 
       # map form array to conjugation array, applying infinitive and options to the array
       conjugation = form.map { |e| resolve e, infinitive, tense, person, plurality, mood }.join(' ').strip
@@ -275,23 +275,41 @@ module Verbs
     # Params:
     # * tense, an option given by the user
     # * aspect, an option given by the user
-    def form_for(tense, aspect)
+    # * voice, an option given by the user
+    def form_for(tense, aspect, voice)
       form = []
-      if tense == :future
-        form << 'will'
-        form << :infinitive if aspect == :habitual
-        form.concat ['have', :past_participle] if aspect == :perfect
-        form.concat ['be having', :past_participle] if aspect == :perfective
-        form.concat ['be', :present_participle] if aspect == :progressive
-        form.concat ['be about to', :infinitive] if aspect == :prospective
-      else
-        form.concat ['used to', :infinitive] if [tense, aspect] == [:past, :habitual]
-        form.concat [:have, :past_participle] if aspect == :perfect
-        form << :past if [tense, aspect] == [:past, :perfective]
-        form.concat [:be, :present_participle] if aspect == :progressive
-        form.concat [:be, 'about to', :infinitive] if aspect == :prospective
-        form << :present if [tense, aspect] == [:present, :habitual]
-        form.concat [:be, 'having', :past_participle] if [tense, aspect] == [:present, :perfective]
+      if voice == :active
+        if tense == :future
+          form << 'will'
+          form << :infinitive if aspect == :habitual
+          form.concat ['have', :past_participle] if aspect == :perfect
+          form.concat ['be having', :past_participle] if aspect == :perfective
+          form.concat ['be', :present_participle] if aspect == :progressive
+          form.concat ['be about to', :infinitive] if aspect == :prospective
+        else
+          form.concat ['used to', :infinitive] if [tense, aspect] == [:past, :habitual]
+          form.concat [:have, :past_participle] if aspect == :perfect
+          form << :past if [tense, aspect] == [:past, :perfective]
+          form.concat [:be, :present_participle] if aspect == :progressive
+          form.concat [:be, 'about to', :infinitive] if aspect == :prospective
+          form << :present if [tense, aspect] == [:present, :habitual]
+          form.concat [:be, 'having', :past_participle] if [tense, aspect] == [:present, :perfective]
+        end
+      elsif voice == :passive
+        if tense == :future
+          form << 'will'
+          form.concat ['be', :past_participle] if aspect == :habitual
+          form.concat ['have been', :past_participle] if aspect == :perfect
+          form.concat ['be being', :past_participle] if aspect == :progressive
+          form.concat ['be about to be', :past_participle] if aspect == :prospective
+        else
+          form.concat ['used to be', :past_participle] if [tense, aspect] == [:past, :habitual]
+          form.concat [:have, 'been', :past_participle] if aspect == :perfect
+          form.concat [:be, :past_participle] if [tense, aspect] == [:past, :perfective]
+          form.concat [:be, 'being', :past_participle] if aspect == :progressive
+          form.concat [:be, 'about to be', :past_participle] if aspect == :prospective
+          form.concat [:be, :past_participle] if [tense, aspect] == [:present, :habitual]
+        end
       end
       form
     end
@@ -301,9 +319,13 @@ module Verbs
     # * tense, an option given by the user
     # * person, how the conjugation refers to the subject
     # * mood, an option given by the user
-    def check_for_improper_constructions(tense, person, mood)
+    # * voice, an option given by the user
+    def check_for_improper_constructions(infinitive, tense, person, mood, voice)
       if mood == :imperative and not (person == :second and tense == :present)
         raise Verbs::ImproperConstruction, 'The imperative mood requires present tense and second person'
+      end
+      if infinitive.to_sym == :be and voice == :passive
+        raise Verbs::ImproperConstruction, 'There is no passive voice for the copula'
       end
     end
   end
