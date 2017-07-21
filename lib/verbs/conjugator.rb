@@ -111,7 +111,7 @@ module Verbs
     end
 
     def present_participle(infinitive)
-      if infinitive.to_s.match(/#{CONSONANT_PATTERN}#{VOWEL_PATTERN}#{CONSONANT_PATTERN}$/) and !conjugations.single_terminal_consonants.include?(infinitive)
+      if infinitive.to_s.match(/#{CONSONANT_PATTERN}#{VOWEL_PATTERN}#{CONSONANT_PATTERN}$/) and !conjugations.single_terminal_consonants.include?(infinitive.to_sym)
         present_participle_with_doubled_terminal_consonant_for infinitive
       elsif infinitive.to_s.match(/c$/)
         infinitive.to_s.concat('king').to_sym
@@ -170,7 +170,7 @@ module Verbs
     def regular_preterite_for(verb)
       infinitive = verb.is_a?(Verb) ? verb.infinitive.to_s : verb.to_s
 
-      if verb.to_s.match(/#{CONSONANT_PATTERN}#{VOWEL_PATTERN}#{DOUBLED_CONSONANT_PATTERN}$/) and !conjugations.single_terminal_consonants.include?(verb)
+      if verb.to_s.match(/#{CONSONANT_PATTERN}#{VOWEL_PATTERN}#{DOUBLED_CONSONANT_PATTERN}$/) and !conjugations.single_terminal_consonants.include?(verb.to_sym)
         regular_preterite_with_doubled_terminal_consonant_for verb
       elsif verb.to_s.match(/#{CONSONANT_PATTERN}e$/) or verb.to_s.match(/ye$/) or verb.to_s.match(/oe$/) or verb.to_s.match(/nge$/) or verb.to_s.match(/ie$/) or verb.to_s.match(/ee$/)
         infinitive.to_s.concat('d').to_sym
