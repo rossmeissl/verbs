@@ -1,6 +1,6 @@
 Verbs::Conjugator.conjugations do |conjugate|
 
-  conjugate.irregular :be do |verb| # copular 
+  conjugate.irregular :be do |verb| # copular
     verb.form :am,    :tense => :present, :person => :first,  :plurality => :singular
     verb.form :is,    :tense => :present, :person => :third,  :plurality => :singular
     verb.form :are,   :tense => :present, :person => :second, :plurality => :singular
@@ -17,7 +17,7 @@ Verbs::Conjugator.conjugations do |conjugate|
     verb.form :been,  :tense => :past,    :derivative => :participle
   end
 
-  conjugate.irregular :have do |verb| 
+  conjugate.irregular :have do |verb|
     verb.form :have,   :tense => :present, :person => :first,  :plurality => :singular
     verb.form :has,    :tense => :present, :person => :third,  :plurality => :singular
     verb.form :have,   :tense => :present, :person => :second, :plurality => :singular
@@ -182,7 +182,7 @@ Verbs::Conjugator.conjugations do |conjugate|
   conjugate.irregular :strive, :strove, :striven
   conjugate.irregular :swear, :swore, :sworn
   conjugate.irregular :sweep, :swept, :swept
-  conjugate.irregular :swell, :swelled, :swelled 
+  conjugate.irregular :swell, :swelled, :swelled
   conjugate.irregular :swim, :swam, :swum
   conjugate.irregular :swing, :swung, :swung
   conjugate.irregular :take, :took, :taken
@@ -309,6 +309,7 @@ Verbs::Conjugator.conjugations do |conjugate|
   conjugate.single_terminal_consonant :flounder
   conjugate.single_terminal_consonant :fluster
   conjugate.single_terminal_consonant :flutter
+  conjugate.single_terminal_consonant :follow
   conjugate.single_terminal_consonant :foreshorten
   conjugate.single_terminal_consonant :founder
   conjugate.single_terminal_consonant :fritter
