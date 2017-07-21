@@ -66,6 +66,7 @@ class TestVerbs < Test::Unit::TestCase
   end
   def test_regular_conjugation_with_irregular_terminal_consonant
     assert_equal 'abandoned', Verbs::Conjugator.conjugate(:abandon, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective)
+    assert_equal 'followed', Verbs::Conjugator.conjugate(:follow, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective)
     assert_equal 'triggered', Verbs::Conjugator.conjugate(:trigger, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective)
     assert_equal 'colored', Verbs::Conjugator.conjugate(:color, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective)
   end
