@@ -36,21 +36,6 @@ Verbs::Conjugator.conjugations do |conjugate|
     verb.form :had,    :tense => :past,    :derivative => :participle
   end
 
-  conjugate.irregular :follow do |verb|
-    verb.form :follow,   :tense => :present, :person => :first,  :plurality => :singular
-    verb.form :follows,    :tense => :present, :person => :third,  :plurality => :singular
-    verb.form :follow,   :tense => :present, :person => :second, :plurality => :singular
-    verb.form :follow,   :tense => :present, :person => :first,  :plurality => :plural
-    verb.form :follow,   :tense => :present, :person => :third,  :plurality => :plural
-    verb.form :followed,    :tense => :past,    :person => :first,  :plurality => :singular
-    verb.form :followed,    :tense => :past,    :person => :third,  :plurality => :singular
-    verb.form :followed,    :tense => :past,    :person => :second, :plurality => :singular
-    verb.form :followed,    :tense => :past,    :person => :first,  :plurality => :plural
-    verb.form :followed,    :tense => :past,    :person => :third,  :plurality => :plural
-    verb.form :following, :tense => :present, :derivative => :participle
-    verb.form :followed,    :tense => :past,    :derivative => :participle
-  end
-
   # http://cpansearch.perl.org/src/RWG/Lingua-EN-Conjugate-0.308/lib/Lingua/EN/Conjugate.pm
   conjugate.irregular :awake, :awoke, :awoken
   conjugate.irregular :bear, :bore, :born
