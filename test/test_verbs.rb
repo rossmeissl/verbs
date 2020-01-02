@@ -60,6 +60,7 @@ class TestVerbs < Test::Unit::TestCase
     assert_equal 'followed', Verbs::Conjugator.conjugate(:follow, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective)
     assert_equal 'triggered', Verbs::Conjugator.conjugate(:trigger, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective)
     assert_equal 'colored', Verbs::Conjugator.conjugate(:color, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective)
+    assert_equal 'delivered', Verbs::Conjugator.conjugate(:deliver, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective)
   end
   def test_regular_conjugation_with_ean_suffix
     assert_equal 'cleaned',  Verbs::Conjugator.conjugate(:clean, :tense => :past, :person => :first, :plurality => :singular, :aspect => :perfective)
