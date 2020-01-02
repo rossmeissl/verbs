@@ -268,6 +268,7 @@ Verbs::Conjugator.conjugations do |conjugate|
   conjugate.single_terminal_consonant :decipher
   conjugate.single_terminal_consonant :deflower
   conjugate.single_terminal_consonant :delimit
+  conjugate.single_terminal_consonant :deliver
   conjugate.single_terminal_consonant :deposit
   conjugate.single_terminal_consonant :develop
   conjugate.single_terminal_consonant :differ
