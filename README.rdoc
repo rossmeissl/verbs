@@ -47,7 +47,7 @@ Set this to a string to prepend the conjugated verb with it. When set to <tt>tru
 
   EXAMPLE                   TENSE    ASPECT
   
-  I usually accepted        past     habitual
+  I used to accept          past     habitual
   I had accepted            past     perfect
   I accepted                past     perfective
   I was accepting           past     progressive
