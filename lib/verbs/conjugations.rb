@@ -4,11 +4,13 @@ Verbs::Conjugator.conjugations do |conjugate|
     verb.form :am,    :tense => :present, :person => :first,  :plurality => :singular
     verb.form :is,    :tense => :present, :person => :third,  :plurality => :singular
     verb.form :are,   :tense => :present, :person => :second, :plurality => :singular
+    verb.form :are,   :tense => :present, :person => :second, :plurality => :plural
     verb.form :are,   :tense => :present, :person => :first,  :plurality => :plural
     verb.form :are,   :tense => :present, :person => :third,  :plurality => :plural
     verb.form :was,   :tense => :past,    :person => :first,  :plurality => :singular
     verb.form :was,   :tense => :past,    :person => :third,  :plurality => :singular
     verb.form :were,  :tense => :past,    :person => :second, :plurality => :singular
+    verb.form :were,  :tense => :past,    :person => :second, :plurality => :plural
     verb.form :were,  :tense => :past,    :person => :first,  :plurality => :plural
     verb.form :were,  :tense => :past,    :person => :third,  :plurality => :plural
     verb.form :were,  :tense => :past,    :mood => :subjunctive
@@ -21,11 +23,13 @@ Verbs::Conjugator.conjugations do |conjugate|
     verb.form :have,   :tense => :present, :person => :first,  :plurality => :singular
     verb.form :has,    :tense => :present, :person => :third,  :plurality => :singular
     verb.form :have,   :tense => :present, :person => :second, :plurality => :singular
+    verb.form :have,   :tense => :present, :person => :second, :plurality => :plural
     verb.form :have,   :tense => :present, :person => :first,  :plurality => :plural
     verb.form :have,   :tense => :present, :person => :third,  :plurality => :plural
     verb.form :had,    :tense => :past,    :person => :first,  :plurality => :singular
     verb.form :had,    :tense => :past,    :person => :third,  :plurality => :singular
     verb.form :had,    :tense => :past,    :person => :second, :plurality => :singular
+    verb.form :had,    :tense => :past,    :person => :second, :plurality => :plural
     verb.form :had,    :tense => :past,    :person => :first,  :plurality => :plural
     verb.form :had,    :tense => :past,    :person => :third,  :plurality => :plural
     verb.form :having, :tense => :present, :derivative => :participle
