@@ -14,9 +14,6 @@ rescue Bundler::BundlerError => e
   exit e.status_code
 end
 
-require 'bueller'
-Bueller::Tasks.new
-
 require 'rake'
 require 'rake/testtask'
 Rake::TestTask.new(:test) do |test|
