@@ -176,7 +176,7 @@ class TestVerbs < Test::Unit::TestCase
   end
 
   def test_passive
-    Verbs::Conjugator.with_options :voice => :passive, :person => :first, :plurality => :singular, :subject => true do |standard|
+    Verbs::Conjugator.with_options :diathesis => :passive, :person => :first, :plurality => :singular, :subject => true do |standard|
       assert_equal 'I used to be accepted',          standard.conjugate(:accept, :tense => :past, :aspect => :habitual)
       assert_equal 'I had been accepted',            standard.conjugate(:accept, :tense => :past, :aspect => :perfect)
       assert_equal 'I was accepted',                 standard.conjugate(:accept, :tense => :past, :aspect => :perfective)
@@ -192,7 +192,7 @@ class TestVerbs < Test::Unit::TestCase
       assert_equal 'I will be about to be accepted', standard.conjugate(:accept, :tense => :future, :aspect => :prospective)
     end
 
-    Verbs::Conjugator.with_options :voice => :passive, :person => :third, :plurality => :plural, :subject => true do |standard|
+    Verbs::Conjugator.with_options :diathesis => :passive, :person => :third, :plurality => :plural, :subject => true do |standard|
       assert_equal 'They used to be accepted',          standard.conjugate(:accept, :tense => :past, :aspect => :habitual)
       assert_equal 'They had been accepted',            standard.conjugate(:accept, :tense => :past, :aspect => :perfect)
       assert_equal 'They were accepted',                standard.conjugate(:accept, :tense => :past, :aspect => :perfective)
@@ -209,7 +209,7 @@ class TestVerbs < Test::Unit::TestCase
     end
 
     assert_raise Verbs::ImproperConstruction do
-      Verbs::Conjugator.conjugate(:be, :voice => :passive)
+      Verbs::Conjugator.conjugate(:be, :diathesis => :passive)
     end
   end
 end
