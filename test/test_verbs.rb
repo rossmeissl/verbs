@@ -174,4 +174,42 @@ class TestVerbs < Test::Unit::TestCase
       assert_equal 'You were about to accept',     standard.conjugate(:accept, :tense => :past, :aspect => :prospective)
     end
   end
+
+  def test_passive
+    Verbs::Conjugator.with_options :diathesis => :passive, :person => :first, :plurality => :singular, :subject => true do |standard|
+      assert_equal 'I used to be accepted',          standard.conjugate(:accept, :tense => :past, :aspect => :habitual)
+      assert_equal 'I had been accepted',            standard.conjugate(:accept, :tense => :past, :aspect => :perfect)
+      assert_equal 'I was accepted',                 standard.conjugate(:accept, :tense => :past, :aspect => :perfective)
+      assert_equal 'I was being accepted',           standard.conjugate(:accept, :tense => :past, :aspect => :progressive)
+      assert_equal 'I was about to be accepted',     standard.conjugate(:accept, :tense => :past, :aspect => :prospective)
+      assert_equal 'I am accepted',                  standard.conjugate(:accept, :tense => :present, :aspect => :habitual)
+      assert_equal 'I have been accepted',           standard.conjugate(:accept, :tense => :present, :aspect => :perfect)
+      assert_equal 'I am being accepted',            standard.conjugate(:accept, :tense => :present, :aspect => :progressive)
+      assert_equal 'I am about to be accepted',      standard.conjugate(:accept, :tense => :present, :aspect => :prospective)
+      assert_equal 'I will be accepted',             standard.conjugate(:accept, :tense => :future, :aspect => :habitual)
+      assert_equal 'I will have been accepted',      standard.conjugate(:accept, :tense => :future, :aspect => :perfect)
+      assert_equal 'I will be being accepted',       standard.conjugate(:accept, :tense => :future, :aspect => :progressive)
+      assert_equal 'I will be about to be accepted', standard.conjugate(:accept, :tense => :future, :aspect => :prospective)
+    end
+
+    Verbs::Conjugator.with_options :diathesis => :passive, :person => :third, :plurality => :plural, :subject => true do |standard|
+      assert_equal 'They used to be accepted',          standard.conjugate(:accept, :tense => :past, :aspect => :habitual)
+      assert_equal 'They had been accepted',            standard.conjugate(:accept, :tense => :past, :aspect => :perfect)
+      assert_equal 'They were accepted',                standard.conjugate(:accept, :tense => :past, :aspect => :perfective)
+      assert_equal 'They were being accepted',          standard.conjugate(:accept, :tense => :past, :aspect => :progressive)
+      assert_equal 'They were about to be accepted',    standard.conjugate(:accept, :tense => :past, :aspect => :prospective)
+      assert_equal 'They are accepted',                 standard.conjugate(:accept, :tense => :present, :aspect => :habitual)
+      assert_equal 'They have been accepted',           standard.conjugate(:accept, :tense => :present, :aspect => :perfect)
+      assert_equal 'They are being accepted',           standard.conjugate(:accept, :tense => :present, :aspect => :progressive)
+      assert_equal 'They are about to be accepted',     standard.conjugate(:accept, :tense => :present, :aspect => :prospective)
+      assert_equal 'They will be accepted',             standard.conjugate(:accept, :tense => :future, :aspect => :habitual)
+      assert_equal 'They will have been accepted',      standard.conjugate(:accept, :tense => :future, :aspect => :perfect)
+      assert_equal 'They will be being accepted',       standard.conjugate(:accept, :tense => :future, :aspect => :progressive)
+      assert_equal 'They will be about to be accepted', standard.conjugate(:accept, :tense => :future, :aspect => :prospective)
+    end
+
+    assert_raise Verbs::ImproperConstruction do
+      Verbs::Conjugator.conjugate(:be, :diathesis => :passive)
+    end
+  end
 end

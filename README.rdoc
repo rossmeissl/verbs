@@ -43,6 +43,10 @@ One of <tt>:indicative</tt>, <tt>:imperative</tt>, or <tt>:subjunctive</tt>. Def
 
 Set this to a string to prepend the conjugated verb with it. When set to <tt>true</tt>, a standard personal pronoun will be used.
 
+=== <tt>:diathesis</tt>
+
+One of <tt>:active</tt> or <tt>:passive</tt>. Defaults to <tt>:active</tt>.
+
 == Tense/aspect quick reference
 
   EXAMPLE                   TENSE    ASPECT
@@ -71,6 +75,7 @@ Set this to a string to prepend the conjugated verb with it. When set to <tt>tru
 * {Pat Byrd and Tom McKlin}[http://www2.gsu.edu/~wwwesl/egw/pluralsv.htm]
 * {Rick Harrison}[http://www.rickharrison.com/language/aspect.html]
 * {Anatoli Makarevich}[https://github.com/makaroni4] for {#6}[https://github.com/rossmeissl/verbs/pull/6]
+* {Nikita Kamaev}[https://github.com/nerixim] for {#35}[https://github.com/rossmeissl/verbs/pull/35]
 
 == Copyright
 
