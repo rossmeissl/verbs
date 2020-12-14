@@ -1,10 +1,10 @@
 # The program conjugates most common english verbs with the following option:
-# * :tense => :past or :present or :future
-# * :person => :first or :second or :third
-# * :plurality => :singular or :plural
-# * :aspect => :habitual or :perfect or :perfective or :progressive or :prospective
-# * :mood => :indicative or :imperative or :subjunctive
-# Respective defaults are :present, :third, :singular, :habitual (:perfective for past tense), and :indicative
+# * :tense => :past or :present or :future (default: :present)
+# * :person => :first or :second or :third (default: :third)
+# * :plurality => :singular or :plural (default: :singular)
+# * :aspect => :habitual or :perfect or :perfective or :progressive or :prospective (default: :habitual, or :perfective for past tense)
+# * :mood => :indicative or :imperative or :subjunctive (default: :indicative)
+# * :diathesis => :active or :passive (default: :active)
 #
 # Author::    Andy Rossmeissl
 # Copyright:: Copyright (c) 2009 Andy Rossmeissl
