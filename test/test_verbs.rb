@@ -109,6 +109,7 @@ class TestVerbs < Test::Unit::TestCase
   def test_core_access
     assert_equal :accepts, :accept.verb.conjugate(:tense => :present, :person => :third, :plurality => :singular, :aspect => :habitual)
     assert_equal 'accepts', 'accept'.verb.conjugate(:tense => :present, :person => :third, :plurality => :singular, :aspect => :habitual)
+    assert_equal 'Girl is Near', 'Be Near'.verb.conjugate(:subject => 'Girl')
   end
   def test_aspects
     Verbs::Conjugator.with_options :person => :first, :plurality => :singular, :subject => true do |standard|
