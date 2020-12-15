@@ -9,6 +9,9 @@ class TestVerbs < Test::Unit::TestCase
     assert_equal 'are', Verbs::Conjugator.conjugate(:be, :tense => :present, :person => :first, :plurality => :plural, :aspect => :habitual)
     assert_equal 'are', Verbs::Conjugator.conjugate(:be, :tense => :present, :person => :third, :plurality => :plural, :aspect => :habitual)
 
+    # past
+    assert_equal 'was', Verbs::Conjugator.conjugate(:be, :tense => :past)
+
     # past habitual
     assert_equal 'used to be', Verbs::Conjugator.conjugate(:be, :tense => :past, :person => :first, :plurality => :singular, :aspect => :habitual)
     assert_equal 'used to be', Verbs::Conjugator.conjugate(:be, :tense => :past, :person => :second, :plurality => :singular, :aspect => :habitual)
@@ -40,6 +43,7 @@ class TestVerbs < Test::Unit::TestCase
     assert_equal 'has', Verbs::Conjugator.conjugate(:have, :tense => :present, :person => :third, :plurality => :singular, :aspect => :habitual)
   end
   def test_know
+    assert_equal 'knew', Verbs::Conjugator.conjugate(:know, :tense => :past)
     assert_equal 'had known', Verbs::Conjugator.conjugate(:know, :tense => :past, :person => :third, :plurality => :singular, :aspect => :perfect)
     assert_equal 'knew', Verbs::Conjugator.conjugate(:know, :tense => :past, :person => :third, :plurality => :singular, :aspect => :perfective)
     assert_equal 'was knowing', Verbs::Conjugator.conjugate(:know, :tense => :past, :person => :third, :plurality => :singular, :aspect => :progressive)
@@ -113,7 +117,7 @@ class TestVerbs < Test::Unit::TestCase
   end
   def test_aspects
     Verbs::Conjugator.with_options :person => :first, :plurality => :singular, :subject => true do |standard|
-      assert_equal 'I used to accept',        standard.conjugate(:accept, :tense => :past, :aspect => :habitual)
+      assert_equal 'I used to accept',          standard.conjugate(:accept, :tense => :past, :aspect => :habitual)
       assert_equal 'I had accepted',            standard.conjugate(:accept, :tense => :past, :aspect => :perfect)
       assert_equal 'I accepted',                standard.conjugate(:accept, :tense => :past, :aspect => :perfective)
       assert_equal 'I was accepting',           standard.conjugate(:accept, :tense => :past, :aspect => :progressive)

@@ -1,10 +1,10 @@
 # The program conjugates most common english verbs with the following option:
-# * :tense => :past or :present or :future
-# * :person => :first or :second or :third
-# * :plurality => :singular or :plural
-# * :aspect => :habitual or :perfect or :perfective or :progressive or :prospective
-# * :mood => :indicative or :imperative or :subjunctive
-# Respective defaults are :present, :third, :singular, :habitual, and :indicative
+# * :tense => :past or :present or :future (default: :present)
+# * :person => :first or :second or :third (default: :third)
+# * :plurality => :singular or :plural (default: :singular)
+# * :aspect => :habitual or :perfect or :perfective or :progressive or :prospective (default: :habitual, or :perfective for past tense)
+# * :mood => :indicative or :imperative or :subjunctive (default: :indicative)
+# * :diathesis => :active or :passive (default: :active)
 #
 # Author::    Andy Rossmeissl
 # Copyright:: Copyright (c) 2009 Andy Rossmeissl
@@ -77,7 +77,7 @@ module Verbs
       plurality = options[:plurality] || :singular   # singular, plural
       diathesis = options[:diathesis] || :active     # active, passive
       mood = options[:mood] ||           :indicative # imperative, subjunctive
-      aspect = options[:aspect] ||       :habitual   # perfective, habitual, progressive, perfect, prospective
+      aspect = options[:aspect] ||       default_aspect(options) # perfective, habitual, progressive, perfect, prospective
 
       check_for_improper_constructions(infinitive, tense, person, mood, diathesis) # find incompatabilities
       form = form_for(tense, aspect, diathesis)                                    # find form array based on tense and aspect
@@ -327,6 +327,10 @@ module Verbs
       if infinitive.to_sym == :be and diathesis == :passive
         raise Verbs::ImproperConstruction, 'There is no passive diathesis for the copula'
       end
+    end
+
+    def default_aspect(options)
+      options[:tense] == :past ? :perfective : :habitual
     end
   end
 end

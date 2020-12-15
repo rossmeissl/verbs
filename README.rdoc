@@ -31,7 +31,7 @@ Either <tt>:singular</tt> or <tt>:plural</tt>. Defaults to <tt>:singular</tt>.
 
 === <tt>:aspect</tt>
 
-One of <tt>:habitual</tt>, <tt>:perfect</tt>, <tt>:perfective</tt>, <tt>:progressive</tt>, or <tt>:prospective</tt>. Defaults to <tt>:habitual</tt>.
+One of <tt>:habitual</tt>, <tt>:perfect</tt>, <tt>:perfective</tt>, <tt>:progressive</tt>, or <tt>:prospective</tt>. Defaults to <tt>:habitual</tt> (<tt>:perfective</tt> for past tense).
 
 See below for a guide to verb aspect.
 
