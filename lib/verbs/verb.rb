@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Verbs
   class Verb
     attr_reader :infinitive, :preterite, :past_participle

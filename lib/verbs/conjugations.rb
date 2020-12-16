@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Verbs::Conjugator.conjugations do |conjugate|
   conjugate.irregular :be do |verb| # copular
     verb.form :am,    tense: :present, person: :first,  plurality: :singular

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # The program conjugates most common english verbs with the following option:
 # * :tense => :past or :present or :future (default: :present)
 # * :person => :first or :second or :third (default: :third)
@@ -235,14 +237,15 @@ module Verbs
     def present_third_person_singular_form_for(verb)
       infinitive = verb.is_a?(Verb) ? verb.infinitive.to_s : verb.to_s
 
-      if infinitive =~ /[a-z&&#{CONSONANT_PATTERN}]y$/i
-        infinitive[0..-2] + 'ies'
-      elsif infinitive =~ /(ss|sh|t?ch|zz|x|#{CONSONANT_PATTERN}o)$/i
-        infinitive + 'es'
-      elsif infinitive =~ /[^s]s$/i
-        infinitive + 'ses'
+      case infinitive
+      when /[a-z&&#{CONSONANT_PATTERN}]y$/i
+        "#{infinitive[0..-2]}ies"
+      when /(ss|sh|t?ch|zz|x|#{CONSONANT_PATTERN}o)$/i
+        "#{infinitive}es"
+      when /[^s]s$/i
+        "#{infinitive}ses"
       else
-        infinitive + 's'
+        "#{infinitive}s"
       end
     end
 
@@ -284,7 +287,8 @@ module Verbs
     # * diathesis, an option given by the user
     def form_for(tense, aspect, diathesis)
       form = []
-      if diathesis == :active
+      case diathesis
+      when :active
         if tense == :future
           form << 'will'
           form << :infinitive if aspect == :habitual
@@ -301,7 +305,7 @@ module Verbs
           form << :present if [tense, aspect] == %i[present habitual]
           form.concat [:be, 'having', :past_participle] if [tense, aspect] == %i[present perfective]
         end
-      elsif diathesis == :passive
+      when :passive
         if tense == :future
           form << 'will'
           form.concat ['be', :past_participle] if aspect == :habitual
