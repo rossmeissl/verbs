@@ -8,7 +8,7 @@ module Verbs
       end
 
       def conjugate(options)
-        words = @base.to_s.split(' ')
+        words = @base.to_s.split
         words.shift if words.first.downcase == 'to'
         infinitive = words.shift.downcase.to_sym
         conjugation = ::Verbs::Conjugator.conjugate infinitive, options
