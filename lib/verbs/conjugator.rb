@@ -155,7 +155,7 @@ module Verbs
     end
 
     def present(infinitive, person, plurality, mood)
-      if verb = conjugations.irregulars[infinitive]
+      if (verb = conjugations.irregulars[infinitive])
         conjugate_irregular(verb, tense: :present, person: person, plurality: plurality, mood: mood)
       elsif (person == :third) && (plurality == :singular) && (mood != :subjunctive)
         present_third_person_singular_form_for infinitive
@@ -171,7 +171,7 @@ module Verbs
     # * plurality, an option given by the user
     # * mood, an option given by the user
     def past(infinitive, person, plurality, mood)
-      if verb = conjugations.irregulars[infinitive]
+      if (verb = conjugations.irregulars[infinitive])
         conjugate_irregular(verb, tense: :past, person: person, plurality: plurality, mood: mood)
       else
         regular_preterite_for infinitive
@@ -201,7 +201,7 @@ module Verbs
     # Params:
     # * infinitive, the given verb
     def past_participle(infinitive)
-      if verb = conjugations.irregulars[infinitive]
+      if (verb = conjugations.irregulars[infinitive])
         conjugate_irregular(verb, tense: :past, derivative: :participle)
       else
         regular_preterite_for infinitive

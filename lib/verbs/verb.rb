@@ -25,11 +25,11 @@ module Verbs
 
       @forms[:present] ||= {}
       @forms[:past] ||= {}
-      if derivative = options[:derivative]
+      if (derivative = options[:derivative])
         @forms[tense][derivative] = word
-      elsif mood = options[:mood]
+      elsif (mood = options[:mood])
         @forms[tense][mood] = word
-      elsif person = options[:person]
+      elsif (person = options[:person])
         @forms[tense][person] ||= {}
         @forms[tense][person][options[:plurality]] = word
       end
