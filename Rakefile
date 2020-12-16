@@ -3,14 +3,14 @@ require 'rubygems'
 begin
   require 'bundler'
 rescue LoadError
-  $stderr.puts "You must install bundler - run `gem install bundler`"
+  warn 'You must install bundler - run `gem install bundler`'
 end
 
 begin
   Bundler.setup
 rescue Bundler::BundlerError => e
-  $stderr.puts e.message
-  $stderr.puts "Run `bundle install` to install missing gems"
+  warn e.message
+  warn 'Run `bundle install` to install missing gems'
   exit e.status_code
 end
 
@@ -21,4 +21,4 @@ Rake::TestTask.new(:test) do |test|
   test.pattern = 'test/**/test_*.rb'
   test.verbose = true
 end
-task :default => :test
+task default: :test

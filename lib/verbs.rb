@@ -8,10 +8,10 @@ require 'verbs/verblike'
 require 'verbs/improper_construction'
 
 module Verbs
-  CONSONANTS = %w(b c d f g h j k l m n p q r s t v w x z)
-  CONSONANT_PATTERN = "[#{CONSONANTS.join}]"
-  DOUBLED_CONSONANTS = %w(b c d f g h j k l m n p q r s t z)
-  DOUBLED_CONSONANT_PATTERN = "[#{DOUBLED_CONSONANTS.join}]"
-  VOWELS = %w(a e i o u y)
-  VOWEL_PATTERN = "[#{VOWELS.join}]"
+  CONSONANTS = %w[b c d f g h j k l m n p q r s t v w x z].freeze
+  CONSONANT_PATTERN = "[#{CONSONANTS.join}]".freeze
+  DOUBLED_CONSONANTS = %w[b c d f g h j k l m n p q r s t z].freeze
+  DOUBLED_CONSONANT_PATTERN = "[#{DOUBLED_CONSONANTS.join}]".freeze
+  VOWELS = %w[a e i o u y].freeze
+  VOWEL_PATTERN = "[#{VOWELS.join}]".freeze
 end

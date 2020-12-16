@@ -1,4 +1,4 @@
 module Verbs
-  class ImproperConstruction < ArgumentError;
+  class ImproperConstruction < ArgumentError
   end
 end

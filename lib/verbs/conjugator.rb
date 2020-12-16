@@ -24,7 +24,9 @@ module Verbs
 
       # Creates initial variables for class
       def initialize
-        @irregulars, @single_terminal_consonants, @copulars = {}, [], {}
+        @irregulars = {}
+        @single_terminal_consonants = []
+        @copulars = {}
       end
 
       # Determines irregular verbs from the expression
@@ -38,9 +40,13 @@ module Verbs
           # create new Verb object with infinitive and &blk
           irregular = ::Verbs::Verb.new infinitive, &blk
         else
-          raise ArgumentError, "Standard irregular verbs must specify preterite and past participle forms" unless preterite and past_participle
+          unless preterite && past_participle
+            raise ArgumentError,
+                  'Standard irregular verbs must specify preterite and past participle forms'
+          end
+
           # create new Verb object with infinitive, preterite and past_participle
-          irregular = ::Verbs::Verb.new infinitive, :preterite => preterite, :past_participle => past_participle
+          irregular = ::Verbs::Verb.new infinitive, preterite: preterite, past_participle: past_participle
         end
         @irregulars[infinitive] = irregular
       end
@@ -99,15 +105,15 @@ module Verbs
     # * options, list of options given to determine conjugation
     def subject(options)
       case [options[:person], options[:plurality]]
-      when [:first, :singular]
+      when %i[first singular]
         'I'
-      when [:first, :plural]
+      when %i[first plural]
         'we'
-      when [:second, :singular], [:second, :plural]
+      when %i[second singular], %i[second plural]
         'you'
-      when [:third, :singular]
+      when %i[third singular]
         'he'
-      when [:third, :plural]
+      when %i[third plural]
         'they'
       end
     end
@@ -143,13 +149,13 @@ module Verbs
     # * plurality, an option given by the user
     # * mood, an option given by the user
     def inflect(infinitive, inflection, person, plurality, mood)
-      send(*([inflection, infinitive, person, plurality, mood][0, method(inflection).arity + 1]))
+      send(*[inflection, infinitive, person, plurality, mood][0, method(inflection).arity + 1])
     end
 
     def present(infinitive, person, plurality, mood)
       if verb = conjugations.irregulars[infinitive]
-        conjugate_irregular(verb, :tense => :present, :person => person, :plurality => plurality, :mood => mood)
-      elsif person == :third and plurality == :singular and not mood == :subjunctive
+        conjugate_irregular(verb, tense: :present, person: person, plurality: plurality, mood: mood)
+      elsif (person == :third) && (plurality == :singular) && (mood != :subjunctive)
         present_third_person_singular_form_for infinitive
       else
         infinitive
@@ -164,7 +170,7 @@ module Verbs
     # * mood, an option given by the user
     def past(infinitive, person, plurality, mood)
       if verb = conjugations.irregulars[infinitive]
-        conjugate_irregular(verb, :tense => :past, :person => person, :plurality => plurality, :mood => mood)
+        conjugate_irregular(verb, tense: :past, person: person, plurality: plurality, mood: mood)
       else
         regular_preterite_for infinitive
       end
@@ -174,11 +180,11 @@ module Verbs
     # Params:
     # * infinitive, the given verb
     def present_participle(infinitive)
-      if infinitive.to_s.match(/#{CONSONANT_PATTERN}#{VOWEL_PATTERN}#{CONSONANT_PATTERN}$/) and !conjugations.single_terminal_consonants.include?(infinitive.to_sym)
+      if infinitive.to_s.match(/#{CONSONANT_PATTERN}#{VOWEL_PATTERN}#{CONSONANT_PATTERN}$/) && !conjugations.single_terminal_consonants.include?(infinitive.to_sym)
         present_participle_with_doubled_terminal_consonant_for infinitive
       elsif infinitive.to_s.match(/c$/)
         infinitive.to_s.concat('king').to_sym
-      elsif infinitive.to_s.match(/^be$/) or infinitive.to_s.match(/ye$/) or infinitive.to_s.match(/oe$/) or infinitive.to_s.match(/nge$/) or infinitive.to_s.match(/ee$/)
+      elsif infinitive.to_s.match(/^be$/) || infinitive.to_s.match(/ye$/) || infinitive.to_s.match(/oe$/) || infinitive.to_s.match(/nge$/) || infinitive.to_s.match(/ee$/)
         infinitive.to_s.concat('ing').to_sym
       elsif infinitive.to_s.match(/ie$/)
         infinitive.to_s[0..-2].concat('ying').to_sym
@@ -194,16 +200,16 @@ module Verbs
     # * infinitive, the given verb
     def past_participle(infinitive)
       if verb = conjugations.irregulars[infinitive]
-        conjugate_irregular(verb, :tense => :past, :derivative => :participle)
+        conjugate_irregular(verb, tense: :past, derivative: :participle)
       else
         regular_preterite_for infinitive
       end
     end
 
-    # 
+    #
     # Params:
-    # * verb, 
-    # * options, 
+    # * verb,
+    # * options,
     def conjugate_irregular(verb, options)
       return verb[options] if verb[options]
 
@@ -212,9 +218,9 @@ module Verbs
       plurality = options[:plurality]
       derivative = options[:derivative]
 
-      if [tense, person, plurality] == [:present, :third, :singular]
+      if [tense, person, plurality] == %i[present third singular]
         present_third_person_singular_form_for verb
-      elsif [tense, derivative] == [:past, :participle]
+      elsif [tense, derivative] == %i[past participle]
         verb.past_participle
       elsif tense == :present
         verb.infinitive
@@ -246,9 +252,9 @@ module Verbs
     def regular_preterite_for(verb)
       infinitive = verb.is_a?(Verb) ? verb.infinitive.to_s : verb.to_s
 
-      if verb.to_s.match(/#{CONSONANT_PATTERN}#{VOWEL_PATTERN}#{DOUBLED_CONSONANT_PATTERN}$/) and !conjugations.single_terminal_consonants.include?(verb.to_sym)
+      if verb.to_s.match(/#{CONSONANT_PATTERN}#{VOWEL_PATTERN}#{DOUBLED_CONSONANT_PATTERN}$/) && !conjugations.single_terminal_consonants.include?(verb.to_sym)
         regular_preterite_with_doubled_terminal_consonant_for verb
-      elsif verb.to_s.match(/#{CONSONANT_PATTERN}e$/) or verb.to_s.match(/ye$/) or verb.to_s.match(/oe$/) or verb.to_s.match(/nge$/) or verb.to_s.match(/ie$/) or verb.to_s.match(/ee$/)
+      elsif verb.to_s.match(/#{CONSONANT_PATTERN}e$/) || verb.to_s.match(/ye$/) || verb.to_s.match(/oe$/) || verb.to_s.match(/nge$/) || verb.to_s.match(/ie$/) || verb.to_s.match(/ee$/)
         infinitive.to_s.concat('d').to_sym
       elsif verb.to_s.match(/#{CONSONANT_PATTERN}y$/)
         infinitive.to_s.chomp('y').concat('ied').to_sym
@@ -261,14 +267,14 @@ module Verbs
     # Params:
     # * verb, apply doule consonant to this
     def regular_preterite_with_doubled_terminal_consonant_for(verb)
-      regular_preterite_for verb.to_s.concat(verb.to_s[-1,1]).to_sym
+      regular_preterite_for verb.to_s.concat(verb.to_s[-1, 1]).to_sym
     end
 
     # Apply proper rules to consonant endings
     # Params:
     # * verb, apply doule consonant to this
     def present_participle_with_doubled_terminal_consonant_for(verb)
-      present_participle verb.to_s.concat(verb.to_s[-1,1]).to_sym
+      present_participle verb.to_s.concat(verb.to_s[-1, 1]).to_sym
     end
 
     # Add appropriate aspects to the tense of the conjugation
@@ -287,13 +293,13 @@ module Verbs
           form.concat ['be', :present_participle] if aspect == :progressive
           form.concat ['be about to', :infinitive] if aspect == :prospective
         else
-          form.concat ['used to', :infinitive] if [tense, aspect] == [:past, :habitual]
-          form.concat [:have, :past_participle] if aspect == :perfect
-          form << :past if [tense, aspect] == [:past, :perfective]
-          form.concat [:be, :present_participle] if aspect == :progressive
+          form.concat ['used to', :infinitive] if [tense, aspect] == %i[past habitual]
+          form.concat %i[have past_participle] if aspect == :perfect
+          form << :past if [tense, aspect] == %i[past perfective]
+          form.concat %i[be present_participle] if aspect == :progressive
           form.concat [:be, 'about to', :infinitive] if aspect == :prospective
-          form << :present if [tense, aspect] == [:present, :habitual]
-          form.concat [:be, 'having', :past_participle] if [tense, aspect] == [:present, :perfective]
+          form << :present if [tense, aspect] == %i[present habitual]
+          form.concat [:be, 'having', :past_participle] if [tense, aspect] == %i[present perfective]
         end
       elsif diathesis == :passive
         if tense == :future
@@ -303,12 +309,12 @@ module Verbs
           form.concat ['be being', :past_participle] if aspect == :progressive
           form.concat ['be about to be', :past_participle] if aspect == :prospective
         else
-          form.concat ['used to be', :past_participle] if [tense, aspect] == [:past, :habitual]
+          form.concat ['used to be', :past_participle] if [tense, aspect] == %i[past habitual]
           form.concat [:have, 'been', :past_participle] if aspect == :perfect
-          form.concat [:be, :past_participle] if [tense, aspect] == [:past, :perfective]
+          form.concat %i[be past_participle] if [tense, aspect] == %i[past perfective]
           form.concat [:be, 'being', :past_participle] if aspect == :progressive
           form.concat [:be, 'about to be', :past_participle] if aspect == :prospective
-          form.concat [:be, :past_participle] if [tense, aspect] == [:present, :habitual]
+          form.concat %i[be past_participle] if [tense, aspect] == %i[present habitual]
         end
       end
       form
@@ -321,10 +327,10 @@ module Verbs
     # * mood, an option given by the user
     # * diathesis, an option given by the user
     def check_for_improper_constructions(infinitive, tense, person, mood, diathesis)
-      if mood == :imperative and not (person == :second and tense == :present)
+      if (mood == :imperative) && !((person == :second) && (tense == :present))
         raise Verbs::ImproperConstruction, 'The imperative mood requires present tense and second person'
       end
-      if infinitive.to_sym == :be and diathesis == :passive
+      if (infinitive.to_sym == :be) && (diathesis == :passive)
         raise Verbs::ImproperConstruction, 'There is no passive diathesis for the copula'
       end
     end
