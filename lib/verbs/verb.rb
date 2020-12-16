@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module Verbs
   class Verb
     attr_reader :infinitive, :preterite, :past_participle
-    
-    def initialize(infinitive, options = {}, &blk)
+
+    def initialize(infinitive, options = {})
       @infinitive = infinitive
       @forms = {}
       if block_given?
@@ -12,29 +14,36 @@ module Verbs
         @past_participle = options[:past_participle]
       end
     end
-    
+
     def form(word, options = {})
-      raise ArgumentError, 'Irregular verb specifications must identify tense and must identify either derivative, mood, or person and plurality' unless options[:tense] and (options[:derivative] or options[:mood] or (options[:person] and options[:plurality]))
-      
+      unless options[:tense] && (options[:derivative] || options[:mood] || (options[:person] && options[:plurality]))
+        raise ArgumentError,
+              'Irregular verb specifications must identify tense and must identify either derivative, mood, or person and plurality'
+      end
+
       tense = options[:tense]
 
       @forms[:present] ||= {}
       @forms[:past] ||= {}
-      if derivative = options[:derivative]
+      if (derivative = options[:derivative])
         @forms[tense][derivative] = word
-      elsif mood = options[:mood]
+      elsif (mood = options[:mood])
         @forms[tense][mood] = word
-      elsif person = options[:person]
+      elsif (person = options[:person])
         @forms[tense][person] ||= {}
         @forms[tense][person][options[:plurality]] = word
       end
     end
-    
+
     def [](options = {})
-      tense, person, plurality, derivative, mood = options[:tense], options[:person], options[:plurality], options[:derivative], options[:mood]
-      if tense and person and plurality and mood
+      tense = options[:tense]
+      person = options[:person]
+      plurality = options[:plurality]
+      derivative = options[:derivative]
+      mood = options[:mood]
+      if tense && person && plurality && mood
         @forms[tense].try(:[], mood) || @forms[tense].try(:[], person).try(:[], plurality)
-      elsif tense and derivative
+      elsif tense && derivative
         @forms[tense].try(:[], derivative)
       end
     end

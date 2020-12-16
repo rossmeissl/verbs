@@ -1,4 +1,6 @@
+# frozen_string_literal: true
+
 module Verbs
-  class ImproperConstruction < ArgumentError;
+  class ImproperConstruction < ArgumentError
   end
 end

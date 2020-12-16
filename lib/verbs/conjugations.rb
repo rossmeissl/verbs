@@ -1,39 +1,40 @@
-Verbs::Conjugator.conjugations do |conjugate|
+# frozen_string_literal: true
 
+Verbs::Conjugator.conjugations do |conjugate|
   conjugate.irregular :be do |verb| # copular
-    verb.form :am,    :tense => :present, :person => :first,  :plurality => :singular
-    verb.form :is,    :tense => :present, :person => :third,  :plurality => :singular
-    verb.form :are,   :tense => :present, :person => :second, :plurality => :singular
-    verb.form :are,   :tense => :present, :person => :second, :plurality => :plural
-    verb.form :are,   :tense => :present, :person => :first,  :plurality => :plural
-    verb.form :are,   :tense => :present, :person => :third,  :plurality => :plural
-    verb.form :was,   :tense => :past,    :person => :first,  :plurality => :singular
-    verb.form :was,   :tense => :past,    :person => :third,  :plurality => :singular
-    verb.form :were,  :tense => :past,    :person => :second, :plurality => :singular
-    verb.form :were,  :tense => :past,    :person => :second, :plurality => :plural
-    verb.form :were,  :tense => :past,    :person => :first,  :plurality => :plural
-    verb.form :were,  :tense => :past,    :person => :third,  :plurality => :plural
-    verb.form :were,  :tense => :past,    :mood => :subjunctive
-    verb.form :be,    :tense => :present, :mood => :subjunctive
-    verb.form :being, :tense => :present, :derivative => :participle
-    verb.form :been,  :tense => :past,    :derivative => :participle
+    verb.form :am,    tense: :present, person: :first,  plurality: :singular
+    verb.form :is,    tense: :present, person: :third,  plurality: :singular
+    verb.form :are,   tense: :present, person: :second, plurality: :singular
+    verb.form :are,   tense: :present, person: :second, plurality: :plural
+    verb.form :are,   tense: :present, person: :first,  plurality: :plural
+    verb.form :are,   tense: :present, person: :third,  plurality: :plural
+    verb.form :was,   tense: :past,    person: :first,  plurality: :singular
+    verb.form :was,   tense: :past,    person: :third,  plurality: :singular
+    verb.form :were,  tense: :past,    person: :second, plurality: :singular
+    verb.form :were,  tense: :past,    person: :second, plurality: :plural
+    verb.form :were,  tense: :past,    person: :first,  plurality: :plural
+    verb.form :were,  tense: :past,    person: :third,  plurality: :plural
+    verb.form :were,  tense: :past,    mood: :subjunctive
+    verb.form :be,    tense: :present, mood: :subjunctive
+    verb.form :being, tense: :present, derivative: :participle
+    verb.form :been,  tense: :past,    derivative: :participle
   end
 
   conjugate.irregular :have do |verb|
-    verb.form :have,   :tense => :present, :person => :first,  :plurality => :singular
-    verb.form :has,    :tense => :present, :person => :third,  :plurality => :singular
-    verb.form :have,   :tense => :present, :person => :second, :plurality => :singular
-    verb.form :have,   :tense => :present, :person => :second, :plurality => :plural
-    verb.form :have,   :tense => :present, :person => :first,  :plurality => :plural
-    verb.form :have,   :tense => :present, :person => :third,  :plurality => :plural
-    verb.form :had,    :tense => :past,    :person => :first,  :plurality => :singular
-    verb.form :had,    :tense => :past,    :person => :third,  :plurality => :singular
-    verb.form :had,    :tense => :past,    :person => :second, :plurality => :singular
-    verb.form :had,    :tense => :past,    :person => :second, :plurality => :plural
-    verb.form :had,    :tense => :past,    :person => :first,  :plurality => :plural
-    verb.form :had,    :tense => :past,    :person => :third,  :plurality => :plural
-    verb.form :having, :tense => :present, :derivative => :participle
-    verb.form :had,    :tense => :past,    :derivative => :participle
+    verb.form :have,   tense: :present, person: :first,  plurality: :singular
+    verb.form :has,    tense: :present, person: :third,  plurality: :singular
+    verb.form :have,   tense: :present, person: :second, plurality: :singular
+    verb.form :have,   tense: :present, person: :second, plurality: :plural
+    verb.form :have,   tense: :present, person: :first,  plurality: :plural
+    verb.form :have,   tense: :present, person: :third,  plurality: :plural
+    verb.form :had,    tense: :past,    person: :first,  plurality: :singular
+    verb.form :had,    tense: :past,    person: :third,  plurality: :singular
+    verb.form :had,    tense: :past,    person: :second, plurality: :singular
+    verb.form :had,    tense: :past,    person: :second, plurality: :plural
+    verb.form :had,    tense: :past,    person: :first,  plurality: :plural
+    verb.form :had,    tense: :past,    person: :third,  plurality: :plural
+    verb.form :having, tense: :present, derivative: :participle
+    verb.form :had,    tense: :past,    derivative: :participle
   end
 
   # http://cpansearch.perl.org/src/RWG/Lingua-EN-Conjugate-0.308/lib/Lingua/EN/Conjugate.pm
