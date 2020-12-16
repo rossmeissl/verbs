@@ -1,0 +1,21 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  NewCops: enable
+
+Metrics/BlockLength:
+  Exclude:
+    - 'test/**/*'
+    - 'lib/verbs/conjugations.rb'
+
+Metrics/ClassLength:
+  Exclude:
+    - 'test/**/*'
+
+Metrics/ModuleLength:
+  Exclude:
+    - 'lib/verbs/conjugator.rb'
+
+Metrics/ParameterLists:
+  Exclude:
+    - 'lib/verbs/conjugator.rb'
