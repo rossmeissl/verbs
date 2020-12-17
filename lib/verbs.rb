@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'singleton'
+require 'time'
 require 'active_support'
 require 'active_support/core_ext'
 require 'verbs/verb'
