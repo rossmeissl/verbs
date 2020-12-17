@@ -182,15 +182,19 @@ module Verbs
     # Params:
     # * infinitive, the given verb
     def present_participle(infinitive)
-      if infinitive.to_s.match(/#{CONSONANT_PATTERN}#{VOWEL_PATTERN}#{CONSONANT_PATTERN}$/) && !conjugations.single_terminal_consonants.include?(infinitive.to_sym)
-        present_participle_with_doubled_terminal_consonant_for infinitive
-      elsif infinitive.to_s.match(/c$/)
+      if infinitive.to_s.match(/#{CONSONANT_PATTERN}#{VOWEL_PATTERN}#{CONSONANT_PATTERN}$/) &&
+         !conjugations.single_terminal_consonants.include?(infinitive.to_sym)
+        return present_participle_with_doubled_terminal_consonant_for infinitive
+      end
+
+      case infinitive.to_s
+      when /c$/
         infinitive.to_s.concat('king').to_sym
-      elsif infinitive.to_s.match(/^be$/) || infinitive.to_s.match(/ye$/) || infinitive.to_s.match(/oe$/) || infinitive.to_s.match(/nge$/) || infinitive.to_s.match(/ee$/)
+      when /^be$|ye$|oe$|nge$|ee$/
         infinitive.to_s.concat('ing').to_sym
-      elsif infinitive.to_s.match(/ie$/)
+      when /ie$/
         infinitive.to_s[0..-2].concat('ying').to_sym
-      elsif infinitive.to_s.match(/e$/)
+      when /e$/
         infinitive.to_s[0..-2].concat('ing').to_sym
       else
         infinitive.to_s[0..-1].concat('ing').to_sym
@@ -255,11 +259,15 @@ module Verbs
     def regular_preterite_for(verb)
       infinitive = verb.is_a?(Verb) ? verb.infinitive.to_s : verb.to_s
 
-      if verb.to_s.match(/#{CONSONANT_PATTERN}#{VOWEL_PATTERN}#{DOUBLED_CONSONANT_PATTERN}$/) && !conjugations.single_terminal_consonants.include?(verb.to_sym)
-        regular_preterite_with_doubled_terminal_consonant_for verb
-      elsif verb.to_s.match(/#{CONSONANT_PATTERN}e$/) || verb.to_s.match(/ye$/) || verb.to_s.match(/oe$/) || verb.to_s.match(/nge$/) || verb.to_s.match(/ie$/) || verb.to_s.match(/ee$/)
+      if verb.to_s.match(/#{CONSONANT_PATTERN}#{VOWEL_PATTERN}#{DOUBLED_CONSONANT_PATTERN}$/) &&
+         !conjugations.single_terminal_consonants.include?(verb.to_sym)
+        return regular_preterite_with_doubled_terminal_consonant_for verb
+      end
+
+      case verb.to_s
+      when /#{CONSONANT_PATTERN}e$|ye$|oe$|nge$|ie$|ee$/
         infinitive.to_s.concat('d').to_sym
-      elsif verb.to_s.match(/#{CONSONANT_PATTERN}y$/)
+      when /#{CONSONANT_PATTERN}y$/
         infinitive.to_s.chomp('y').concat('ied').to_sym
       else
         infinitive.to_s.concat('ed').to_sym
