@@ -198,7 +198,7 @@ module Verbs
         infinitive.to_s[0..-2]
       else
         infinitive.to_s[0..-1]
-      end.concat('ing').to_sym
+      end.dup.concat('ing').to_sym
     end
 
     # Forming verb to apply past tense endings
