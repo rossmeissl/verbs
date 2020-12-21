@@ -266,11 +266,11 @@ module Verbs
 
       case verb.to_s
       when /(#{CONSONANT_PATTERN}e|ye|oe|nge|ie|ee)$/
-        infinitive.to_s.concat('d').to_sym
+        infinitive.concat('d').to_sym
       when /#{CONSONANT_PATTERN}y$/
-        infinitive.to_s.gsub(/y$/, 'ied').to_sym
+        infinitive.gsub(/y$/, 'ied').to_sym
       else
-        infinitive.to_s.concat('ed').to_sym
+        infinitive.concat('ed').to_sym
       end
     end
 
