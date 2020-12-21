@@ -524,6 +524,7 @@ Verbs::Conjugator.conjugations do |conjugate|
   conjugate.single_terminal_consonant :malinger
   conjugate.single_terminal_consonant :market
   conjugate.single_terminal_consonant :matter
+  conjugate.single_terminal_consonant :mimic
   conjugate.single_terminal_consonant :misinterpret
   conjugate.single_terminal_consonant :misremember
   conjugate.single_terminal_consonant :monitor

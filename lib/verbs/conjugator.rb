@@ -189,16 +189,16 @@ module Verbs
 
       case infinitive.to_s
       when /c$/
-        infinitive.to_s.concat('king').to_sym
-      when /^be$|ye$|oe$|nge$|ee$/
-        infinitive.to_s.concat('ing').to_sym
+        "#{infinitive}k"
+      when /(^be|ye|oe|nge|ee)$/
+        infinitive.to_s
       when /ie$/
-        infinitive.to_s[0..-2].concat('ying').to_sym
-      when /e$/
-        infinitive.to_s[0..-2].concat('ing').to_sym
+        "#{infinitive.to_s[0..-2]}y"
+      when /#{VOWEL_PATTERN}#{CONSONANT_PATTERN}e$/
+        infinitive.to_s[0..-2]
       else
-        infinitive.to_s[0..-1].concat('ing').to_sym
-      end
+        infinitive.to_s[0..-1]
+      end.concat('ing').to_sym
     end
 
     # Forming verb to apply past tense endings
