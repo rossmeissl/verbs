@@ -37,11 +37,44 @@ Verbs::Conjugator.conjugations do |conjugate|
     verb.form :had,    tense: :past,    derivative: :participle
   end
 
+  conjugate.irregular :can do |verb|
+    verb.form :can,   tense: :present, person: :first,  plurality: :singular
+    verb.form :can,   tense: :present, person: :third,  plurality: :singular
+    verb.form :can,   tense: :present, person: :second, plurality: :singular
+    verb.form :can,   tense: :present, person: :second, plurality: :plural
+    verb.form :can,   tense: :present, person: :first,  plurality: :plural
+    verb.form :can,   tense: :present, person: :third,  plurality: :plural
+    verb.form :could,    tense: :past,    person: :first,  plurality: :singular
+    verb.form :could,    tense: :past,    person: :third,  plurality: :singular
+    verb.form :could,    tense: :past,    person: :second, plurality: :singular
+    verb.form :could,    tense: :past,    person: :second, plurality: :plural
+    verb.form :could,    tense: :past,    person: :first,  plurality: :plural
+    verb.form :could,    tense: :past,    person: :third,  plurality: :plural
+  end
+
+  conjugate.irregular :may do |verb|
+    verb.form :may,   tense: :present, person: :first,  plurality: :singular
+    verb.form :may,   tense: :present, person: :third,  plurality: :singular
+    verb.form :may,   tense: :present, person: :second, plurality: :singular
+    verb.form :may,   tense: :present, person: :second, plurality: :plural
+    verb.form :may,   tense: :present, person: :first,  plurality: :plural
+    verb.form :may,   tense: :present, person: :third,  plurality: :plural
+    verb.form :might,    tense: :past,    person: :first,  plurality: :singular
+    verb.form :might,    tense: :past,    person: :third,  plurality: :singular
+    verb.form :might,    tense: :past,    person: :second, plurality: :singular
+    verb.form :might,    tense: :past,    person: :second, plurality: :plural
+    verb.form :might,    tense: :past,    person: :first,  plurality: :plural
+    verb.form :might,    tense: :past,    person: :third,  plurality: :plural
+  end
+
   # http://cpansearch.perl.org/src/RWG/Lingua-EN-Conjugate-0.308/lib/Lingua/EN/Conjugate.pm
+  conjugate.irregular :arise, :arose, :arisen
   conjugate.irregular :awake, :awoke, :awoken
+  conjugate.irregular :backslide, :backslid, :backslidden
   conjugate.irregular :bear, :bore, :born
   conjugate.irregular :beat, :beat, :beat
   conjugate.irregular :become, :became, :become
+  conjugate.irregular :beget, :begot, :begotten
   conjugate.irregular :begin, :began, :begun
   conjugate.irregular :bend, :bent, :bent
   conjugate.irregular :beset, :beset, :beset
@@ -55,13 +88,18 @@ Verbs::Conjugator.conjugations do |conjugate|
   conjugate.irregular :breed, :bred, :bred
   conjugate.irregular :bring, :brought, :brought
   conjugate.irregular :broadcast, :broadcast, :broadcast
+  conjugate.irregular :browbeat, :browbeat, :browbeat
   conjugate.irregular :build, :built, :built
   conjugate.irregular :burn, :burned, :burned
   conjugate.irregular :burst, :burst, :burst
+  conjugate.irregular :bust, :bust, :bust
   conjugate.irregular :buy, :bought, :bought
   conjugate.irregular :cast, :cast, :cast
   conjugate.irregular :catch, :caught, :caught
+  conjugate.irregular :chide, :chid, :chidden
   conjugate.irregular :choose, :chose, :chosen
+  conjugate.irregular :crossbreed, :crossbred, :crossbred
+  conjugate.irregular :crow, :crew, :crowed
   conjugate.irregular :cling, :clung, :clung
   conjugate.irregular :come, :came, :come
   conjugate.irregular :cost, :cost, :cost
@@ -88,21 +126,34 @@ Verbs::Conjugator.conjugations do |conjugate|
   conjugate.irregular :forbid, :forbade, :forbidden
   conjugate.irregular :forget, :forgot, :forgotten
   conjugate.irregular :forego, :forewent, :foregone
+  conjugate.irregular :foresee, :foresaw, :foreseen
   conjugate.irregular :forgo, :forwent, :forgone
   conjugate.irregular :forgive, :forgave, :forgiven
   conjugate.irregular :forsake, :forsook, :forsaken
+  conjugate.irregular :foretell, :foretold, :foretold
+  conjugate.irregular :frostbite, :frostbit, :frostbitten
   conjugate.irregular :freeze, :froze, :frozen
   conjugate.irregular :get, :got, :gotten
   conjugate.irregular :give, :gave, :given
   conjugate.irregular :go, :went, :gone
+  conjugate.irregular :gnaw, :gnawed, :gnawn
   conjugate.irregular :grind, :ground, :ground
   conjugate.irregular :grow, :grew, :grown
+  conjugate.irregular :'hand-feed', :'hand-fed', :'hand-fed'
+  conjugate.irregular :handwrite, :handwrote, :handwritten
   conjugate.irregular :hang, :hung, :hung
   conjugate.irregular :hear, :heard, :heard
+  conjugate.irregular :hew, :hewed, :hewn
   conjugate.irregular :hide, :hid, :hidden
   conjugate.irregular :hit, :hit, :hit
   conjugate.irregular :hold, :held, :held
   conjugate.irregular :hurt, :hurt, :hurt
+  conjugate.irregular :inbreed, :inbred, :inbred
+  conjugate.irregular :inlay, :inlaid, :inlaid
+  conjugate.irregular :interbreed, :interbred, :interbred
+  conjugate.irregular :interweave, :interwove, :interwoven
+  conjugate.irregular :interwind, :interwound, :interwound
+  conjugate.irregular :'jerry-build', :'jerry-built', :'jerry-built'
   conjugate.irregular :keep, :kept, :kept
   conjugate.irregular :kneel, :knelt, :knelt
   conjugate.irregular :knit, :knit, :knit
@@ -116,29 +167,137 @@ Verbs::Conjugator.conjugations do |conjugate|
   conjugate.irregular :let, :let, :let
   conjugate.irregular :lie, :lay, :lain
   conjugate.irregular :light, :lit, :lighted
+  conjugate.irregular :'lip-read', :'lip-read', :'lip-read'
   conjugate.irregular :lose, :lost, :lost
   conjugate.irregular :make, :made, :made
   conjugate.irregular :mean, :meant, :meant
   conjugate.irregular :meet, :met, :met
+  conjugate.irregular :miscast, :miscast, :miscast
+  conjugate.irregular :misdeal, :misdealt, :misdealt
+  conjugate.irregular :misdo, :misdid, :misdone
+  conjugate.irregular :mishear, :misheard, :misheard
+  conjugate.irregular :mislay, :mislaid, :mislaid
+  conjugate.irregular :mislead, :misled, :misled
+  conjugate.irregular :misread, :misread, :misread
+  conjugate.irregular :misset, :misset, :misset
+  conjugate.irregular :misspeak, :misspoke, :misspoken
   conjugate.irregular :misspell, :misspelled, :misspelled
+  conjugate.irregular :misspend, :misspent, :misspent
   conjugate.irregular :mistake, :mistook, :mistaken
+  conjugate.irregular :misteach, :mistaught, :mistaught
+  conjugate.irregular :misunderstand, :misunderstood, :misunderstood
+  conjugate.irregular :miswrite, :miswrote, :miswritten
   conjugate.irregular :mow, :mowed, :mowed
+  conjugate.irregular :offset, :offset, :offset
+  conjugate.irregular :outbid, :outbid, :outbid
+  conjugate.irregular :outbreed, :outbred, :outbred
+  conjugate.irregular :outdo, :outdid, :outdone
+  conjugate.irregular :outdraw, :outdrew, :outdrawn
+  conjugate.irregular :outdrink, :outdrank, :outdrunk
+  conjugate.irregular :outdrive, :outdrove, :outdriven
+  conjugate.irregular :outfight, :outfought, :outfought
+  conjugate.irregular :outfly, :outflew, :outflown
+  conjugate.irregular :outgrow, :outgrew, :outgrown
+  conjugate.irregular :outride, :outrode, :outridden
+  conjugate.irregular :outrun, :outran, :outrun
+  conjugate.irregular :outsell, :outsold, :outsold
+  conjugate.irregular :outshine, :outshone, :outshone
+  conjugate.irregular :outshoot, :outshot, :outshot
+  conjugate.irregular :outsing, :outsang, :outsung
+  conjugate.irregular :outsit, :outsat, :outsat
+  conjugate.irregular :outsleep, :outslept, :outslept
+  conjugate.irregular :outspeak, :outspoke, :outspoken
+  conjugate.irregular :outspeed, :outsped, :outsped
+  conjugate.irregular :outspend, :outspent, :outspent
+  conjugate.irregular :outswear, :outswore, :outsworn
+  conjugate.irregular :outswim, :outswam, :outswum
+  conjugate.irregular :outthink, :outthought, :outthought
+  conjugate.irregular :outthrow, :outthrew, :outthrown
+  conjugate.irregular :outwrite, :outwrote, :outwritten
+  conjugate.irregular :overbid, :overbid, :overbid
+  conjugate.irregular :overbreed, :overbred, :overbred
+  conjugate.irregular :overbuild, :overbuilt, :overbuilt
+  conjugate.irregular :overbuy, :overbought, :overbought
   conjugate.irregular :overcome, :overcame, :overcome
   conjugate.irregular :overdo, :overdid, :overdone
+  conjugate.irregular :overdraw, :overdrew, :overdrawn
+  conjugate.irregular :override, :overridden, :overridden
+  conjugate.irregular :overdrink, :overdrank, :overdrunk
+  conjugate.irregular :overeat, :overate, :overeaten
+  conjugate.irregular :overfeed, :overfed, :overfed
+  conjugate.irregular :overhang, :overhung, :overhung
+  conjugate.irregular :overhear, :overheard, :overheard
+  conjugate.irregular :overlay, :overlaid, :overlaid
+  conjugate.irregular :overpay, :overpaid, :overpaid
+  conjugate.irregular :override, :overrode, :overridden
+  conjugate.irregular :overrun, :overran, :overrun
+  conjugate.irregular :oversee, :oversaw, :overseen
+  conjugate.irregular :oversell, :oversold, :oversold
+  conjugate.irregular :overshoot, :overshot, :overshot
+  conjugate.irregular :oversleep, :overslept, :overslept
+  conjugate.irregular :overspeak, :overspoke, :overspoken
+  conjugate.irregular :overspend, :overspent, :overspent
   conjugate.irregular :overtake, :overtook, :overtaken
+  conjugate.irregular :overthink, :overthought, :overthought
   conjugate.irregular :overthrow, :overthrew, :overthrown
+  conjugate.irregular :overwind, :overwound, :overwound
+  conjugate.irregular :overwrite, :overwrote, :overwritten
+  conjugate.irregular :partake, :partook, :partaken
   conjugate.irregular :pay, :paid, :paid
   conjugate.irregular :plead, :pled, :pled
+  conjugate.irregular :prebuild, :prebuilt, :prebuilt
+  conjugate.irregular :predo, :predid, :predone
+  conjugate.irregular :premake, :premade, :premade
+  conjugate.irregular :prepay, :prepaid, :prepaid
+  conjugate.irregular :presell, :presold, :presold
+  conjugate.irregular :preset, :preset, :preset
+  conjugate.irregular :preshrink, :preshrank, :preshrunk
+  conjugate.irregular :proofread, :proofread, :proofread
   conjugate.irregular :prove, :proved, :proved
   conjugate.irregular :put, :put, :put
+  conjugate.irregular :'quick-freeze', :'quick-froze', :'quick-frozen'
   conjugate.irregular :quit, :quit, :quit
   conjugate.irregular :read, :read, :read
+  conjugate.irregular :reawake, :reawoke, :reawaken
+  conjugate.irregular :rebid, :rebid, :rebid
+  conjugate.irregular :rebind, :rebound, :rebound
+  conjugate.irregular :rebroadcast, :rebroadcast, :rebroadcast
+  conjugate.irregular :rebuild, :rebuilt, :rebuilt
+  conjugate.irregular :recast, :recast, :recast
+  conjugate.irregular :recut, :recut, :recut
+  conjugate.irregular :redeal, :redealt, :redealt
+  conjugate.irregular :redo, :redid, :redone
+  conjugate.irregular :redraw, :redrew, :redrawn
+  conjugate.irregular :refit, :refit, :refit
+  conjugate.irregular :regrind, :reground, :reground
+  conjugate.irregular :regrow, :regrew, :regrown
+  conjugate.irregular :rehang, :rehung, :rehung
+  conjugate.irregular :rehear, :reheard, :reheard
+  conjugate.irregular :relay, :relaid, :relaid
+  conjugate.irregular :remake, :remade, :remade
+  conjugate.irregular :repay, :repaid, :repaid
+  conjugate.irregular :reread, :reread, :reread
+  conjugate.irregular :rerun, :reran, :rerun
+  conjugate.irregular :resell, :resold, :resold
+  conjugate.irregular :resend, :resent, :resent
   conjugate.irregular :reset, :reset, :reset
+  conjugate.irregular :retake, :retook, :retaken
+  conjugate.irregular :reteach, :retaught, :retaught
+  conjugate.irregular :retear, :retore, :retirn
+  conjugate.irregular :retell, :retold, :retold
+  conjugate.irregular :rethink, :rethought, :rethought
+  conjugate.irregular :retread, :retrod, :retrodden
+  conjugate.irregular :rewear, :rewore, :reworn
+  conjugate.irregular :rewin, :rewon, :rewon
+  conjugate.irregular :rewind, :rewound, :rewound
+  conjugate.irregular :rewrite, :rewrote, :rewritten
   conjugate.irregular :rid, :rid, :rid
   conjugate.irregular :ride, :rode, :ridden
   conjugate.irregular :ring, :rang, :rung
   conjugate.irregular :rise, :rose, :risen
+  conjugate.irregular :roughcast, :roughcast, :roughcast
   conjugate.irregular :run, :ran, :run
+  conjugate.irregular :'sand-cast', :'sand-cast', :'sand-cast'
   conjugate.irregular :saw, :sawed, :sawed
   conjugate.irregular :say, :said, :said
   conjugate.irregular :see, :saw, :seen
@@ -164,6 +323,7 @@ Verbs::Conjugator.conjugations do |conjugate|
   conjugate.irregular :slay, :slew, :slain
   conjugate.irregular :slide, :slid, :slid
   conjugate.irregular :sling, :slung, :slung
+  conjugate.irregular :slink, :slunk, :slunk
   conjugate.irregular :slit, :slit, :slit
   conjugate.irregular :smite, :smote, :smitten
   conjugate.irregular :sow, :sowed, :sowed
@@ -199,7 +359,10 @@ Verbs::Conjugator.conjugations do |conjugate|
   conjugate.irregular :throw, :threw, :thrown
   conjugate.irregular :thrust, :thrust, :thrust
   conjugate.irregular :tread, :trod, :trodden
+  conjugate.irregular :typeset, :typeset, :typeset
   conjugate.irregular :understand, :understood, :understood
+  conjugate.irregular :undertake, :undertook, :undertaken
+  conjugate.irregular :undergo, :underwent, :undergone
   conjugate.irregular :uphold, :upheld, :upheld
   conjugate.irregular :upset, :upset, :upset
   conjugate.irregular :wake, :woke, :woken
@@ -209,6 +372,7 @@ Verbs::Conjugator.conjugations do |conjugate|
   conjugate.irregular :weep, :wept, :wept
   conjugate.irregular :wind, :wound, :wound
   conjugate.irregular :win, :won, :won
+  conjugate.irregular :withdraw, :withdrew, :withdrawn
   conjugate.irregular :withhold, :withheld, :withheld
   conjugate.irregular :withstand, :withstood, :withstood
   conjugate.irregular :wring, :wrung, :wrung
