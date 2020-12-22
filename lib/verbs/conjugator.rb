@@ -193,7 +193,7 @@ module Verbs
       when /(^be|ye|oe|nge|ee)$/
         infinitive.to_s
       when /ie$/
-        "#{infinitive.to_s[0..-2]}y"
+        infinitive.to_s.gsub(/ie$/, 'y')
       when /#{VOWEL_PATTERN}#{CONSONANT_PATTERN}e$/
         infinitive.to_s[0..-2]
       else
