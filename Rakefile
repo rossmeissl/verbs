@@ -18,6 +18,7 @@ end
 
 require 'rake'
 require 'rake/testtask'
+import 'tasks/release.rake'
 Rake::TestTask.new(:test) do |test|
   test.libs << 'lib' << 'test'
   test.pattern = 'test/**/test_*.rb'
