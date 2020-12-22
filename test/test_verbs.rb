@@ -398,4 +398,9 @@ class TestVerbs < Test::Unit::TestCase
       Verbs::Conjugator.conjugate(:be, diathesis: :passive)
     end
   end
+
+  def test_not_modifying_frozen_string
+    assert_equal 'is mimicking', Verbs::Conjugator.conjugate(:mimic, aspect: :progressive)
+    assert_equal 'was mimicking', Verbs::Conjugator.conjugate(:mimic, tense: :past, aspect: :progressive)
+  end
 end
