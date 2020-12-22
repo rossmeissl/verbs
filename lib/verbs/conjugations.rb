@@ -377,6 +377,7 @@ Verbs::Conjugator.conjugations do |conjugate|
   conjugate.irregular :withstand, :withstood, :withstood
   conjugate.irregular :wring, :wrung, :wrung
   conjugate.irregular :write, :wrote, :written
+
   conjugate.single_terminal_consonant :abandon
   conjugate.single_terminal_consonant :accouter
   conjugate.single_terminal_consonant :accredit
@@ -424,6 +425,7 @@ Verbs::Conjugator.conjugations do |conjugate|
   conjugate.single_terminal_consonant :cohabit
   conjugate.single_terminal_consonant :color
   conjugate.single_terminal_consonant :concenter
+  conjugate.single_terminal_consonant :consider
   conjugate.single_terminal_consonant :corner
   conjugate.single_terminal_consonant :cover
   conjugate.single_terminal_consonant :covet
@@ -444,6 +446,7 @@ Verbs::Conjugator.conjugations do |conjugate|
   conjugate.single_terminal_consonant :discredit
   conjugate.single_terminal_consonant :disencumber
   conjugate.single_terminal_consonant :dishearten
+  conjugate.single_terminal_consonant :dishonor
   conjugate.single_terminal_consonant :disinherit
   conjugate.single_terminal_consonant :dismember
   conjugate.single_terminal_consonant :dispirit
@@ -506,6 +509,7 @@ Verbs::Conjugator.conjugations do |conjugate|
   conjugate.single_terminal_consonant :hydraulic
   conjugate.single_terminal_consonant :imprison
   conjugate.single_terminal_consonant :inhabit
+  conjugate.single_terminal_consonant :inherit
   conjugate.single_terminal_consonant :inhibit
   conjugate.single_terminal_consonant :inspirit
   conjugate.single_terminal_consonant :interpret
@@ -602,6 +606,7 @@ Verbs::Conjugator.conjugations do |conjugate|
   conjugate.single_terminal_consonant :swelter
   conjugate.single_terminal_consonant :sypher
   conjugate.single_terminal_consonant :tamper
+  conjugate.single_terminal_consonant :target
   conjugate.single_terminal_consonant :tauten
   conjugate.single_terminal_consonant :tender
   conjugate.single_terminal_consonant :thicken
