@@ -3,12 +3,12 @@
 Conjugates most common english verbs for all persons, tenses, standard aspects, and modern moods (with active diathesis). Standard and exceptional spelling rules are obeyed.
 
 ```ruby
-    Verbs::Conjugator.conjugate :be, :tense => :past, :person => :second, :plurality => :singular, :aspect => :perfective
-    # => :were
-    'be nice'.verb.conjugate :subject => 'Matz'
-    # => "Matz is nice"
-    :sleep.verb.conjugate :tense => :future, :person => :first, :plurality => :singular, :aspect => :progressive, :subject => true
-    # => :"I will be sleeping"
+Verbs::Conjugator.conjugate :be, :tense => :past, :person => :second, :plurality => :singular, :aspect => :perfective
+# => :were
+'be nice'.verb.conjugate :subject => 'Matz'
+# => "Matz is nice"
+:sleep.verb.conjugate :tense => :future, :person => :first, :plurality => :singular, :aspect => :progressive, :subject => true
+# => :"I will be sleeping"
 ```
 
 ## Installation
@@ -62,13 +62,13 @@ I had accepted|past|perfect
 I accepted|past|perfective
 I was accepting|past|progressive
 I was about to accept|past|prospective
-|
+|||
 I accept|present|habitual
 I have accepted|present|perfect
 I am having accepted|present|perfective
 I am accepting|present|progressive
 I am about to accept|present|prospective
-|
+|||
 I will accept|future|habitual
 I will have accepted|future|perfect
 
