@@ -400,7 +400,7 @@ class TestVerbs < Test::Unit::TestCase
   end
 
   def test_not_modifying_frozen_string
-    assert_equal 'is diying', Verbs::Conjugator.conjugate(:die, aspect: :progressive)
-    assert_equal 'was diying', Verbs::Conjugator.conjugate(:die, tense: :past, aspect: :progressive)
+    assert_equal 'is mimicking', Verbs::Conjugator.conjugate(:mimic, aspect: :progressive)
+    assert_equal 'was mimicking', Verbs::Conjugator.conjugate(:mimic, tense: :past, aspect: :progressive)
   end
 end
