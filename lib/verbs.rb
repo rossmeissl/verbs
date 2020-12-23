@@ -13,8 +13,12 @@ require 'verbs/improper_construction'
 module Verbs
   CONSONANTS = %w[b c d f g h j k l m n p q r s t v w x z].freeze
   CONSONANT_PATTERN = "[#{CONSONANTS.join}]"
-  DOUBLED_CONSONANTS = %w[b c d f g h j k l m n p q r s t z].freeze
+  CONSONANTS_WITHOUT_C = CONSONANTS - ['c']
+  CONSONANTS_WITHOUT_C_PATTERN = "[#{CONSONANTS_WITHOUT_C.join}]"
+  DOUBLED_CONSONANTS = CONSONANTS - %w[v w x]
   DOUBLED_CONSONANT_PATTERN = "[#{DOUBLED_CONSONANTS.join}]"
+  DOUBLED_CONSONANTS_WITHOUT_C = DOUBLED_CONSONANTS - ['c']
+  DOUBLED_CONSONANT_WITHOUT_C_PATTERN = "[#{DOUBLED_CONSONANTS_WITHOUT_C.join}]"
   VOWELS = %w[a e i o u y].freeze
   VOWEL_PATTERN = "[#{VOWELS.join}]"
 end
