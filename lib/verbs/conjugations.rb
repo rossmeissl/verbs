@@ -386,7 +386,6 @@ Verbs::Conjugator.conjugations do |conjugate|
   conjugate.single_terminal_consonant :alter
   conjugate.single_terminal_consonant :anchor
   conjugate.single_terminal_consonant :answer
-  conjugate.single_terminal_consonant :antic
   conjugate.single_terminal_consonant :attrit
   conjugate.single_terminal_consonant :audit
   conjugate.single_terminal_consonant :author
@@ -398,7 +397,6 @@ Verbs::Conjugator.conjugations do |conjugate|
   conjugate.single_terminal_consonant :betoken
   conjugate.single_terminal_consonant :bewilder
   conjugate.single_terminal_consonant :billet
-  conjugate.single_terminal_consonant :bivouac
   conjugate.single_terminal_consonant :blacken
   conjugate.single_terminal_consonant :blither
   conjugate.single_terminal_consonant :blossom
@@ -488,9 +486,7 @@ Verbs::Conjugator.conjugations do |conjugate|
   conjugate.single_terminal_consonant :foreshorten
   conjugate.single_terminal_consonant :founder
   conjugate.single_terminal_consonant :fritter
-  conjugate.single_terminal_consonant :frolic
   conjugate.single_terminal_consonant :gammon
-  conjugate.single_terminal_consonant :garlic
   conjugate.single_terminal_consonant :gather
   conjugate.single_terminal_consonant :gladden
   conjugate.single_terminal_consonant :glimmer
@@ -506,7 +502,6 @@ Verbs::Conjugator.conjugations do |conjugate|
   conjugate.single_terminal_consonant :hearten
   conjugate.single_terminal_consonant :hoarsen
   conjugate.single_terminal_consonant :honor
-  conjugate.single_terminal_consonant :hydraulic
   conjugate.single_terminal_consonant :imprison
   conjugate.single_terminal_consonant :inhabit
   conjugate.single_terminal_consonant :inherit
@@ -533,15 +528,12 @@ Verbs::Conjugator.conjugations do |conjugate|
   conjugate.single_terminal_consonant :malinger
   conjugate.single_terminal_consonant :market
   conjugate.single_terminal_consonant :matter
-  conjugate.single_terminal_consonant :medivac
-  conjugate.single_terminal_consonant :mimic
   conjugate.single_terminal_consonant :misinterpret
   conjugate.single_terminal_consonant :misremember
   conjugate.single_terminal_consonant :monitor
   conjugate.single_terminal_consonant :moulder
   conjugate.single_terminal_consonant :murder
   conjugate.single_terminal_consonant :murmur
-  conjugate.single_terminal_consonant :music
   conjugate.single_terminal_consonant :muster
   conjugate.single_terminal_consonant :number
   conjugate.single_terminal_consonant :offer
@@ -550,9 +542,6 @@ Verbs::Conjugator.conjugations do |conjugate|
   conjugate.single_terminal_consonant :outmaneuver
   conjugate.single_terminal_consonant :overmaster
   conjugate.single_terminal_consonant :pamper
-  conjugate.single_terminal_consonant :panic
-  conjugate.single_terminal_consonant :picnic
-  conjugate.single_terminal_consonant :physic
   conjugate.single_terminal_consonant :pilot
   conjugate.single_terminal_consonant :pivot
   conjugate.single_terminal_consonant :plaster
@@ -615,7 +604,6 @@ Verbs::Conjugator.conjugations do |conjugate|
   conjugate.single_terminal_consonant :totter
   conjugate.single_terminal_consonant :toughen
   conjugate.single_terminal_consonant :tower
-  conjugate.single_terminal_consonant :traffic
   conjugate.single_terminal_consonant :transit
   conjugate.single_terminal_consonant :trigger
   conjugate.single_terminal_consonant :tucker
