@@ -196,8 +196,8 @@ module Verbs
         infinitive.to_s.gsub(/ie$/, 'y')
       when /#{VOWEL_PATTERN}#{CONSONANT_PATTERN}e$/, /ue$/
         infinitive.to_s[0..-2]
-      else
-        infinitive.to_s[0..-1]
+      else # rubocop:disable Lint/DuplicateBranch
+        infinitive.to_s
       end.dup.concat('ing').to_sym
     end
 
