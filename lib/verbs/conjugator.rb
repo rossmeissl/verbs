@@ -278,14 +278,14 @@ module Verbs
 
     # Apply proper rules to consonant endings
     # Params:
-    # * verb, apply doule consonant to this
+    # * verb, apply double consonant to this
     def regular_preterite_with_doubled_terminal_consonant_for(verb)
       regular_preterite_for verb.to_s.concat(verb.to_s[-1, 1]).to_sym
     end
 
     # Apply proper rules to consonant endings
     # Params:
-    # * verb, apply doule consonant to this
+    # * verb, apply double consonant to this
     def present_participle_with_doubled_terminal_consonant_for(verb)
       if /c$/ =~ verb.to_s
         present_participle verb.to_sym
