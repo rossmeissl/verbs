@@ -216,7 +216,7 @@ class TestVerbs < Test::Unit::TestCase
                                                                       aspect: :progressive)
     assert_equal 'criticked', Verbs::Conjugator.conjugate(:critic, tense: :past, aspect: :perfective)
     assert_equal 'was criticking', Verbs::Conjugator.conjugate(:critic, tense: :past, person: :first, plurality: :singular,
-                                                                       aspect: :progressive)
+                                                                        aspect: :progressive)
   end
 
   def test_regular_conjugation_with_unusual_terminal_e
