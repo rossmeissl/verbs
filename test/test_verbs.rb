@@ -225,6 +225,9 @@ class TestVerbs < Test::Unit::TestCase
                                                      aspect: :perfective)
     assert_equal 'is tying', Verbs::Conjugator.conjugate(:tie, plurality: :singular, aspect: :progressive)
     assert_equal 'was tying', Verbs::Conjugator.conjugate(:tie, tense: :past, plurality: :singular, aspect: :progressive)
+    assert_equal 'issued',
+                 Verbs::Conjugator.conjugate(:issue, tense: :past, person: :first, plurality: :singular, aspect: :perfective)
+    assert_equal 'was issuing', Verbs::Conjugator.conjugate(:issue, tense: :past, plurality: :singular, aspect: :progressive)
   end
 
   def test_conjugation_with_terminal_sibilance

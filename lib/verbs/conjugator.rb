@@ -194,7 +194,7 @@ module Verbs
         infinitive.to_s
       when /ie$/
         infinitive.to_s.gsub(/ie$/, 'y')
-      when /#{VOWEL_PATTERN}#{CONSONANT_PATTERN}e$/
+      when /#{VOWEL_PATTERN}#{CONSONANT_PATTERN}e$/, /ue$/
         infinitive.to_s[0..-2]
       else
         infinitive.to_s[0..-1]
@@ -265,7 +265,7 @@ module Verbs
       end
 
       case verb.to_s
-      when /(#{CONSONANT_PATTERN}e|ye|oe|nge|ie|ee)$/
+      when /(#{CONSONANT_PATTERN}e|ye|oe|nge|ie|ee|ue)$/
         infinitive.concat('d').to_sym
       when /#{CONSONANT_PATTERN}y$/
         infinitive.gsub(/y$/, 'ied').to_sym
