@@ -214,9 +214,6 @@ class TestVerbs < Test::Unit::TestCase
     assert_equal 'panicked', Verbs::Conjugator.conjugate(:panic, tense: :past, aspect: :perfective)
     assert_equal 'was panicking', Verbs::Conjugator.conjugate(:panic, tense: :past, person: :first, plurality: :singular,
                                                                       aspect: :progressive)
-    assert_equal 'criticked', Verbs::Conjugator.conjugate(:critic, tense: :past, aspect: :perfective)
-    assert_equal 'was criticking', Verbs::Conjugator.conjugate(:critic, tense: :past, person: :first, plurality: :singular,
-                                                                        aspect: :progressive)
   end
 
   def test_regular_conjugation_with_unusual_terminal_e
