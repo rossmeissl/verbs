@@ -182,7 +182,7 @@ module Verbs
     # Params:
     # * infinitive, the given verb
     def present_participle(infinitive)
-      if infinitive.to_s.match(/#{CONSONANT_PATTERN}#{VOWEL_PATTERN}#{CONSONANT_PATTERN}$/) &&
+      if infinitive.to_s.match(/#{CONSONANT_PATTERN}#{VOWEL_PATTERN}#{CONSONANTS_WITHOUT_C_PATTERN}$/) &&
          !conjugations.single_terminal_consonants.include?(infinitive.to_sym)
         return present_participle_with_doubled_terminal_consonant_for infinitive
       end
@@ -259,7 +259,7 @@ module Verbs
     def regular_preterite_for(verb)
       infinitive = verb.is_a?(Verb) ? verb.infinitive.to_s : verb.to_s
 
-      if verb.to_s.match(/#{CONSONANT_PATTERN}#{VOWEL_PATTERN}#{DOUBLED_CONSONANT_PATTERN}$/) &&
+      if verb.to_s.match(/#{CONSONANT_PATTERN}#{VOWEL_PATTERN}#{DOUBLED_CONSONANT_WITHOUT_C_PATTERN}$/) &&
          !conjugations.single_terminal_consonants.include?(verb.to_sym)
         return regular_preterite_with_doubled_terminal_consonant_for verb
       end
@@ -269,6 +269,8 @@ module Verbs
         infinitive.concat('d').to_sym
       when /#{CONSONANT_PATTERN}y$/
         infinitive.gsub(/y$/, 'ied').to_sym
+      when /c$/
+        infinitive.gsub(/c$/, 'cked').to_sym
       else
         infinitive.concat('ed').to_sym
       end
@@ -276,16 +278,20 @@ module Verbs
 
     # Apply proper rules to consonant endings
     # Params:
-    # * verb, apply doule consonant to this
+    # * verb, apply double consonant to this
     def regular_preterite_with_doubled_terminal_consonant_for(verb)
       regular_preterite_for verb.to_s.concat(verb.to_s[-1, 1]).to_sym
     end
 
     # Apply proper rules to consonant endings
     # Params:
-    # * verb, apply doule consonant to this
+    # * verb, apply double consonant to this
     def present_participle_with_doubled_terminal_consonant_for(verb)
-      present_participle verb.to_s.concat(verb.to_s[-1, 1]).to_sym
+      if /c$/ =~ verb.to_s
+        present_participle verb.to_sym
+      else
+        present_participle verb.to_s.concat(verb.to_s[-1, 1]).to_sym
+      end
     end
 
     # Add appropriate aspects to the tense of the conjugation

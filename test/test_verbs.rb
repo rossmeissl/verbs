@@ -207,6 +207,15 @@ class TestVerbs < Test::Unit::TestCase
                                                     aspect: :progressive)
   end
 
+  def test_regular_conjugation_with_terminal_c
+    assert_equal 'mimicked', Verbs::Conjugator.conjugate(:mimic, tense: :past, aspect: :perfective)
+    assert_equal 'was mimicking', Verbs::Conjugator.conjugate(:mimic, tense: :past, person: :first, plurality: :singular,
+                                                                      aspect: :progressive)
+    assert_equal 'panicked', Verbs::Conjugator.conjugate(:panic, tense: :past, aspect: :perfective)
+    assert_equal 'was panicking', Verbs::Conjugator.conjugate(:panic, tense: :past, person: :first, plurality: :singular,
+                                                                      aspect: :progressive)
+  end
+
   def test_regular_conjugation_with_unusual_terminal_e
     assert_equal 'dyed',
                  Verbs::Conjugator.conjugate(:dye, tense: :past, person: :first, plurality: :singular,
